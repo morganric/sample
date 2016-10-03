@@ -1,0 +1,42 @@
+
+<div class="col-md-12">
+
+<div class="col-md-4">
+<p>
+  <%= image_tag @profile.image.url(:square) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle" %>
+</p>
+
+<br/>
+
+
+<% if current_user && current_user.admin?  || current_user == @profile.user %>
+<%= link_to 'Edit', edit_profile_path(@profile), clasS: "btn btn-default" %>
+<% end %>
+</div>
+
+<div class="col-md-8">
+<h1>
+  <%= @profile.display_name %>
+</h1>
+
+<p class="well">
+  <%= @profile.bio %>
+</p>
+
+<!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class=" hidden"><a href="#previews" aria-controls="previews" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> Previews</a></li>
+    <% unless @reviews.blank? %>
+    <li role="presentation" class="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> Reviews</a></li>
+    <% end %>
+  </ul>
+  <br/>
+
+<% @profile.user.posts.each do |post| %>
+        <%= render 'shared/posts', post: post %>
+      <% end %>
+
+
+</div>
+
+

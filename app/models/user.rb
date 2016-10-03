@@ -6,12 +6,22 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  after_create :create_profile
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
+
+  has_one :profile
+
+  def create_profile
+    @profile = Profile.new(:user_id => id)
+    @profile.display_name = self.name
+    @profile.save
+  end
 
 end
 

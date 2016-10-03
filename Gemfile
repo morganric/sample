@@ -12,6 +12,7 @@ gem 'jplayer-rails'
 gem "font-awesome-rails"
 gem 'zeroclipboard-rails'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'friendly_id', '~> 5.1.0'
 group :development, :test do
   gem 'byebug'
 end

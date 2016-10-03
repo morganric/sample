@@ -36,80 +36,15 @@
  
 </style>
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Embed: <%= @post.title %></h4>
-      </div>
-      <div class="modal-body">
-        <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="220"></iframe>
-        <br>
-        <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
-        <textarea cols="65"  id='fe_text' rows="3" class="hidden"><iframe src="https://longplayr.herokuapp.com/<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
-        <br/>
-        
-
-<script>
-  $(document).ready(function() {
-    var clip = new ZeroClipboard($("#d_clip_button"))
-  });
-
-  $("#clear-test").on("click", function(){
-    $("#fe_text").val("Copy me!");
-    $("#testarea").val("");
-  });
-</script>
- </div> <div class="modal-footer"> <a href="#" class="btn btn-default" data-dismiss="modal">Close</a> 
-
-   <button class='my_clip_button btn btn-primary' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
-    <b>Copy Embed Code To Clipboard</b>
-  </button>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<!-- modal end -->
-
 <div class="col-md-12">
-  <div class="col-md-4">
-    <br/>
-    <p class="text-center">
-      <%= image_tag @post.image.url(:square) || @post.parent.image.url(:square) , class: "img-thumbnail" %>
-    </p>
   
-    <div>
-        <% if current_user && current_user.admin? || current_user == @post.user %>
-          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
-        <% end %>
-
-        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
-            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
-        </a>
-
-        <% if current_user && current_user.admin? %>
-        <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
-        <% end %>
-
-    </div>
-
-    <% if current_user && current_user.admin? %>
-      <%= @post.views %> views
-    <% end %>
-
-  </div>
 
   <div class="col-md-8">
 
     <h1>
       <%= link_to @post.title, @post %>
       <br/>
-      <small>by <%= link_to @post.user.email, @post.user %>
+      <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
       </small>
       
     </h1>
@@ -176,8 +111,6 @@
       </h5>
     </ul>
 
-    
- 
 
     <div class="well">
         <h4>        
@@ -219,9 +152,76 @@
 
     
   </div>
+
+  <div class="col-md-4">
+    <br/>
+    <p class="text-center">
+      <%= image_tag @post.image.url(:square) || @post.parent.image.url(:square) , class: "img-thumbnail" %>
+    </p>
+  
+    <div>
+        <% if current_user && current_user.admin? || current_user == @post.user %>
+          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
+        <% end %>
+
+        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
+        </a>
+
+        <% if current_user && current_user.admin? %>
+        <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
+        <% end %>
+
+    </div>
+
+    <% if current_user && current_user.admin? %>
+      <%= @post.views %> views
+    <% end %>
+
+  </div>
   
 
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Embed: <%= @post.title %></h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="220"></iframe>
+        <br>
+        <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
+        <textarea cols="65"  id='fe_text' rows="3" class="hidden"><iframe src="https://longplayr.herokuapp.com/<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
+        <br/>
+        
+
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+  });
+
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+</script>
+ </div> <div class="modal-footer"> <a href="#" class="btn btn-default" data-dismiss="modal">Close</a> 
+
+   <button class='my_clip_button btn btn-primary' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
+    <b>Copy Embed Code To Clipboard</b>
+  </button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- modal end -->
 
 
 <script type="text/javascript">

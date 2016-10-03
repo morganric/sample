@@ -1,14 +1,14 @@
 
 <div class="panel panel-body panel-default">
 
-        <%= link_to image_tag(post.image.url(:thumbnail), class: "pull-left", style:"margin-right:15px;"),  post %>
+        <%= link_to image_tag(post.image.url(:thumbnail), class: "pull-left", style:"margin-right:15px;"),  user_post_path(id: post.slug, username: post.user.profile.slug) %>
         
         <h3>
-          <%= link_to truncate(post.title, length: 100), post %><br/>
+          <%= link_to truncate(post.title, length: 100), user_post_path(id: post.slug, username: post.user.profile.slug) %><br/>
          
 
           <small>
-            by   <%= link_to truncate(post.user.name, length: 100), post.user %>
+            by   <%= link_to truncate(post.user.profile.display_name || post.user.name, length: 100), vanity_profile_path(post.user.profile.slug) %>
           </small>
         </h3>
       
@@ -20,7 +20,6 @@
       
       </label>
       </li>
-
 
         <% post.tags.limit(3).each do |tag| %>
             <li>
@@ -34,4 +33,5 @@
         <% end %>
         </h5>
       </ul>
+      <%= image_tag("http://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v#{post.audio.file.version}/#{post.audio.file.public_id}.png", width: "70%", style: "margin-left: 0px;") %>
 </div>
