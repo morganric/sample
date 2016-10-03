@@ -99,14 +99,15 @@
 
         <h5>
           <%= link_to 'MixSample', root_path, target: '_blank', class: "black pull-right logo", style: "margin-top:7px;" %>
-                <%#= link_to image_tag(asset_path('longplayr-logo.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
+                <%= link_to image_tag(asset_path('mixsample-black.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
         </h5>
 
        
       </div><!-- footer -->
       <br/>
       <br/>
-    <div id="tracklist">
+      <h4>Samples</h4>
+    <div id="samples">
       
       <% @post.samples.each_line do |line| %>
 
