@@ -6,6 +6,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'cloudinary'
+gem 'carrierwave'
+gem 'jplayer-rails'
+gem "font-awesome-rails"
+gem 'zeroclipboard-rails'
+gem 'acts-as-taggable-on', '~> 4.0'
 group :development, :test do
   gem 'byebug'
 end

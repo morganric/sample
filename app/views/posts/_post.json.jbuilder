@@ -1,0 +1,2 @@
+json.extract! post, :id, :title, :user_id, :description, :samples, :image, :audio, :tag_list, :slug, :hidden, :disabled, :plays, :views, :slug, :created_at, :updated_at
+json.url post_url(post, format: :json)

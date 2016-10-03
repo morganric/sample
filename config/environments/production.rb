@@ -1,3 +1,11 @@
+ENV["DOMAIN_NAME"] = "mixsample.herokuapp.com"
+ENV["ADMIN_NAME"] = "morganric"
+ENV["ADMIN_EMAIL"] = "morganric@gmail.com"
+ENV["ADMIN_PASSWORD"] = "Lionking1"
+ENV["SENDGRID_USERNAME"] = 'playlisterappcom@gmail.com'
+ENV["SENDGRID_PASSWORD"] = 'Pl4yl15t&ch1ll'
+
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

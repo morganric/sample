@@ -1,0 +1,24 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :user_id, as: :hidden %>
+    <%= f.input :description %>
+    <%= f.input :samples %>
+    <%= f.input :image %>
+    <%= f.input :audio %>
+    <%= f.input :tag_list %>
+    <% if current_user && current_user.admin? %>
+    <%= f.input :slug %>
+    <%= f.input :hidden %>
+    <%= f.input :disabled %>
+    <%= f.input :plays %>
+    <%= f.input :views %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

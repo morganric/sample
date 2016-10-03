@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require zeroclipboard
 //= require bootstrap-sprockets
+//= require 'jquery.jplayer'
 //= require_tree .
