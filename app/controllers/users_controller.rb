@@ -1,10 +1,25 @@
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized
+  # after_action :verify_authorized
 
   def index
     @users = User.all
-    authorize User
+    # authorize User
+
+
+    @clips = 0
+    @views = 0
+    @plays = 0
+
+    Post.all.each do |post|
+      @clips = @clips + post.samples.lines.count.to_i
+      @plays = @plays + post.plays.to_i     
+      @views = @views + post.views.to_i
+    end
+
+
+
   end
 
   def show
@@ -32,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :name)
   end
 
 end

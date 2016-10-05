@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'track/:track', to: 'posts#track', as: :track
   get '/buy', to: 'posts#buy', as: :buy
   get 'tagged/:tag', to: 'posts#tag', as: :tag
+  get 'upload', to: 'posts#new', as: :upload
+  post '/posts/:id/play' => 'posts#play', as: :play
 
    scope ":id" do
     get '/', to: 'profiles#show', :as =>  :vanity_profile

@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :embed]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :embed, :play]
+  before_filter :authenticate_user!,  except: [:embed, :index, :show, :tag, :featured, :track, :buy, :short, :artist, :provider, :search, :embed, :latest, :play]
+
+
+  include ApplicationHelper
+    require 'itunes-search-api'
 
   # GET /posts
   # GET /posts.json
@@ -11,15 +16,61 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @number = 0
+    @post.views = @post.views.to_i + 1
+    @post.save
   end
 
    def embed
     @number = 0
-
     render layout: "embed"
+  end
+
+  # GET /posts/1
+  # GET /posts/1.json
+  def artist
+    @artist = deparametrize(params[:artist])
+    @posts = Post.where("samples like ?", "%#{@artist}%").where(hidden: false)
+  end
+
+   # GET /posts/1
+  # GET /posts/1.json
+  def track
+    @track = deparametrize(params[:track]).titleize
+    @posts = Post.where("samples like ?", "%#{@track}%").where(hidden: false)
+  end
+
+  def play
+    @post.plays = @post.plays.to_i + 1
+
+    respond_to do |format|
+     if @post.save
+       format.json { render :show, status: :ok, location: @post }
+     else
+       format.html { render action: 'new' }
+       format.json { render json: @post.errors, status: :unprocessable_entity }
+     end
+   end
+  end
+
+  def tag
+    @tag = params[:tag]
+    @posts = Post.tagged_with(params[:tag]).where(hidden: false)
 
   end
 
+  def buy
+    @track = params[:track]
+    @songs = ITunesSearchAPI.search(:term => @track, :country => "US", :media => "music")
+    @song = @songs.first
+
+    unless @song.blank?
+       @song_url = @song["trackViewUrl"]
+      redirect_to ItunesAffiliateLink.create_link(@song_url, "track_list&app=itunes")
+    else 
+      redirect_to :back, notice: "Sorry, #{@track} is not available." 
+    end
+
+  end
 
   # GET /posts/new
   def new
@@ -76,6 +127,12 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.friendly.find(params[:id])
+    end
+
+    def admin_only
+      unless current_user.admin? 
+        redirect_to :root, :alert => "Access denied."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

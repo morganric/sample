@@ -54,7 +54,7 @@
     <h3>
       <%= link_to truncate(@post.title, length: 20), @post , target: "_blank" %>
       <br/>
-      <small>by <%= link_to @post.user.name, @post.user, target: "_blank"  %>
+         <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
       </small>
     </h3>
 

@@ -1,0 +1,21 @@
+<h1>Sampling: <%= deparametrize(@track) %></h1>
+<hr/>
+
+<div class="col-md-12 row">
+<div class="col-md-8">
+
+  <div>
+  <br/>
+
+    	<% @posts.each do |post| %>
+  			<%= render 'shared/posts', post: post %>
+  		<% end %>
+
+  </div>
+
+</div>
+<div class="col-md-4">
+  
+</div>
+
+</div>

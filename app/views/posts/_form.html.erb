@@ -8,13 +8,13 @@
     <%= f.input :samples %>
     <%= f.input :image %>
     <%= f.input :audio %>
-    <%= f.input :tag_list %>
+    <%= f.label :tags %>
+    <%= f.text_field :tag_list, :onfocus=> @post.tags.map(&:name).join(","), :value=> @post.tags.map(&:name).join(","), :class=>"form-control", placeholder: @post.tags.map(&:name).join(",") || "e.g. beats, hip hop, instrumental" %>
+    <br/>
     <% if current_user && current_user.admin? %>
-    <%= f.input :slug %>
     <%= f.input :hidden %>
     <%= f.input :disabled %>
-    <%= f.input :plays %>
-    <%= f.input :views %>
+
     <% end %>
   </div>
 
