@@ -16,6 +16,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'itunes'
 gem 'itunes-search-api'
 gem 'itunes-affiliate-link' 
+gem "social-buttons", '~> 0.3'
 group :development, :test do
   gem 'byebug'
 end

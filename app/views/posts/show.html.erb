@@ -125,9 +125,9 @@
         <h5>        
           <%= @post.description.gsub(/\n/, '<br/>').html_safe %>
         </h4>
-        <h6>
+        <p class="">
            <%= @post.created_at.strftime("Posted on %d %B %Y") %> 
-        </h6> 
+        </p> 
     </div>
 
     <h4>Samples</h4>
@@ -177,6 +177,11 @@
             <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
         </a>
 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i>
+          Share 
+        </button>
+
         <% if current_user && current_user.admin? %>
         <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
         <% end %>
@@ -202,7 +207,9 @@
         <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="220"></iframe>
         <br>
         <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
-        <textarea cols="65"  id='fe_text' rows="3" class="hidden"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
+
+
+        <textarea cols="65"  id='fe_text' rows="3" style="margin:15px;"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
         <br/>
         
 
@@ -225,6 +232,33 @@
     </div>
   </div>
   
+</div>
+
+
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share: <%= @post.title %> by <%= @post.user.name %></h4>
+      </div>
+      <div class="modal-body">
+         <ul class="nav social" style="padding-left:40px;">
+          <li style="postion:absolute; top:-4px;" class="facebook-no-count">
+
+          <%= like_button("1440239169528450", send: true, count: 'none') %></li>
+          <li><%= tweet_button(count: 'inline', :url => post_url( :id => @post.id), via: "longplayr", text: "Listen to: #{truncate(@post.title, lenght: 80)} by #{truncate(@post.user.name, lenght: 40)}") %>
+            </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- modal end -->

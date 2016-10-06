@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :posts
   mount Upmin::Engine => '/admin'
-  root to: 'posts#index'
   devise_for :users
   resources :users
 
@@ -27,6 +26,15 @@ Rails.application.routes.draw do
 
   get '/:username/:id', to: 'posts#show', as: :user_post
 
+  authenticated :user do
+    root to: 'posts#index'
+    # root to: 'pages#welcome'
+  end
+
+  unauthenticated do
+    root to: 'visitors#index', as: :welcome
+  end
+   
 
 
 
