@@ -2,9 +2,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :embed, :play]
   before_filter :authenticate_user!,  except: [:embed, :index, :show, :tag, :featured, :track, :buy, :short, :artist, :provider, :search, :embed, :latest, :play]
 
+  after_filter :allow_iframe
 
   include ApplicationHelper
-    require 'itunes-search-api'
+  require 'itunes-search-api'
 
   # GET /posts
   # GET /posts.json
@@ -124,6 +125,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+    def allow_iframe
+      response.headers['X-Frame-Options'] = "ALLOWALL"
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.friendly.find(params[:id])
