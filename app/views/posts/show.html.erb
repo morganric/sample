@@ -144,7 +144,7 @@
 
 
                <% if index === 1 %>
-                   - <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
+                   by <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
                <% elsif index === 0 %>
                     <%= link_to truncate(value, length: 80), track_path(track: value.parameterize), :target => "_blank", :class => "" %>
                <% end %>
@@ -202,7 +202,7 @@
         <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="220"></iframe>
         <br>
         <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
-        <textarea cols="65"  id='fe_text' rows="3" class="hidden"><iframe src="https://longplayr.herokuapp.com/<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
+        <textarea cols="65"  id='fe_text' rows="3" class="hidden"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
         <br/>
         
 
