@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def artist
-    @artist = deparametrize(params[:artist])
+    @artist = deparametrize(params[:artist]).titleize
     @posts = Post.where("samples like ?", "%#{@artist}%").where(hidden: false)
   end
 
