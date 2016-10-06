@@ -54,8 +54,8 @@ class PostsController < ApplicationController
   end
 
   def tag
-    @tag = params[:tag]
-    @posts = Post.tagged_with(params[:tag]).where(hidden: false)
+    @tag = deparametrize(params[:tag]).downcase
+    @posts = Post.tagged_with(@tag).where(hidden: false)
 
   end
 
