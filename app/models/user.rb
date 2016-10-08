@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
   def create_profile
     @profile = Profile.new(:user_id => id)
     @profile.display_name = self.name

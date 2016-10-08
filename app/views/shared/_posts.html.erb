@@ -33,5 +33,5 @@
         <% end %>
         </h5>
       </ul>
-      <%= image_tag("http://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v#{post.audio.file.version}/#{post.audio.file.public_id}.png", width: "70%", style: "margin-left: 0px;") %>
+      <%= cl_image_tag("http://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v#{post.audio.file.version}/#{post.audio.file.public_id}.png", width: "70%", style: "margin-left: 0px;", :secure => true) %>
 </div>

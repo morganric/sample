@@ -37,6 +37,39 @@
 </style>
 
 <div class="col-md-12">
+
+
+  <div class="col-md-4">
+    <br/>
+    <p class="text-center">
+      <%= cl_image_tag @post.image.url(:square) , class: "img-thumbnail", :secure => true %>
+    </p>
+  
+    <div>
+        <% if current_user && current_user.admin? || current_user == @post.user %>
+          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
+        <% end %>
+
+        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
+        </a>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i>
+          Share 
+        </button>
+
+        <% if current_user && current_user.admin? %>
+        <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
+        <% end %>
+
+        <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default hidden' %>
+
+    </div>
+
+
+  </div>
+  
   
 
   <div class="col-md-8">
@@ -162,35 +195,6 @@
     
   </div>
 
-  <div class="col-md-4">
-    <br/>
-    <p class="text-center">
-      <%= image_tag @post.image.url(:square) || @post.parent.image.url(:square) , class: "img-thumbnail" %>
-    </p>
-  
-    <div>
-        <% if current_user && current_user.admin? || current_user == @post.user %>
-          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
-        <% end %>
-
-        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
-            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
-        </a>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i>
-          Share 
-        </button>
-
-        <% if current_user && current_user.admin? %>
-        <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
-        <% end %>
-
-    </div>
-
-
-  </div>
-  
 
 </div>
 
@@ -242,14 +246,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Share: <%= @post.title %> by <%= @post.user.name %></h4>
+        <h4 class="modal-title" id="myModalLabel">Share: <%= @post.title %> by <%= @post.user.profile.display_name || @post.user.name %></h4>
       </div>
       <div class="modal-body">
          <ul class="nav social" style="padding-left:40px;">
           <li style="postion:absolute; top:-4px;" class="facebook-no-count">
 
           <%= like_button("1440239169528450", send: true, count: 'none') %></li>
-          <li><%= tweet_button(count: 'inline', :url => post_url( :id => @post.id), via: "longplayr", text: "Listen to: #{truncate(@post.title, lenght: 80)} by #{truncate(@post.user.name, lenght: 40)}") %>
+          <li><%= tweet_button(count: 'inline', :url => post_url( :id => @post.id), via: "mixsampleapp", text: "Listen to: #{truncate(@post.title, lenght: 80)} by #{truncate(@post.user.name, lenght: 40)}") %>
             </li>
         </ul>
       </div>
