@@ -15,6 +15,12 @@
  *= require_self
  */
 
+ @media (max-width: 1200px) {
+  .wave {
+    display: none;
+  }
+}
+
  .record {
     height:300px;
     background-image:url('https://static.pexels.com/photos/96857/pexels-photo-96857.jpeg');
