@@ -78,8 +78,12 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "sample.mp3" if original_filename
-  # end
+  def filename
+    "#{@model.title.parameterize}.mp3" if original_filename
+  end
+
+  def public_id
+    return @model.title.parameterize
+  end  
 
 end

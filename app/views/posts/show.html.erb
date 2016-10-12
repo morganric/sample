@@ -63,7 +63,7 @@
         <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
         <% end %>
 
-        <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default hidden' %>
+        <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
 
     </div>
 
@@ -75,7 +75,7 @@
   <div class="col-md-8">
 
     <h1>
-      <%= link_to @post.title, @post %>
+      <%= @post.title %>
       <br/>
       <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
       </small>
@@ -162,7 +162,7 @@
            <%= @post.created_at.strftime("Posted on %d %B %Y") %> 
         </h6> 
     </div>
-    
+
     <% unless @post.hide_samples %>
     <h4>Samples</h4>
     <div >

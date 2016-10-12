@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-
-
-
   resources :profiles
   get "about" => "pages#about", as: :about
 
   resources :posts
+
+  resources :posts do
+    member do
+      get :download
+    end
+  end  
+
   mount Upmin::Engine => '/admin'
   devise_for :users
   resources :users
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
   get 'upload', to: 'posts#new', as: :upload
   post '/posts/:id/play' => 'posts#play', as: :play
 
-   scope ":id" do
+  scope ":id" do
     get '/', to: 'profiles#show', :as =>  :vanity_profile
     
   end
@@ -35,9 +39,6 @@ Rails.application.routes.draw do
   unauthenticated do
     root to: 'visitors#index', as: :welcome
   end
-
-
-   
 
 
 
