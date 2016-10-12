@@ -106,6 +106,8 @@
       </div><!-- footer -->
       <br/>
       <br/>
+
+      <% unless @post.hide_samples %>
       <h4>Samples</h4>
     <div id="samples">
       
@@ -130,6 +132,8 @@
        </div>
     <% end %>
     </div>
+
+    <% end %>
 
 
 </div>

@@ -14,7 +14,14 @@
     <% if current_user && current_user.admin? %>
     <%= f.input :hidden %>
     <%= f.input :disabled %>
+    <%= f.input :featured %>
+    <%= f.input :hide_samples %>
+    <%= f.input :downloadable %>
+    <% end %>
 
+    <% if current_user && current_user.vip? %>
+    <%= f.input :hide_samples %>
+    <%#= f.input :downloadable %>
     <% end %>
   </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003205538) do
+ActiveRecord::Schema.define(version: 20161012190954) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -26,8 +26,12 @@ ActiveRecord::Schema.define(version: 20161003205538) do
     t.boolean  "disabled"
     t.integer  "plays"
     t.integer  "views"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "featured"
+    t.boolean  "hide_samples"
+    t.boolean  "downloadable"
+    t.integer  "downloads"
   end
 
   create_table "profiles", force: :cascade do |t|

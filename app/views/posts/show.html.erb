@@ -162,10 +162,10 @@
            <%= @post.created_at.strftime("Posted on %d %B %Y") %> 
         </h6> 
     </div>
-
+    
+    <% unless @post.hide_samples %>
     <h4>Samples</h4>
     <div >
-      
       <% @post.samples.each_line do |line| %>
 
        <% @number = @number + 1 %>
@@ -186,8 +186,10 @@
                   <a href="<%= buy_url(track: line) %>" class="btn buy btn-xs btn-default pull-right" target="_blank" style="display:none;"> <i class="fa fa-apple" aria-hidden="true"></i> Buy on iTunes</a>
        
            </div>
-    <% end %>
+      <% end %>
     </div>
+    <% end %>
+
   </div>
 
 
