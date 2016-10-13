@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :profiles
   get "about" => "pages#about", as: :about
 
@@ -39,7 +40,6 @@ Rails.application.routes.draw do
   unauthenticated do
     root to: 'visitors#index', as: :welcome
   end
-
 
 
 end

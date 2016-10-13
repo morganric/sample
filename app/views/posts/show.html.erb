@@ -12,8 +12,8 @@
  
 
    .jp-seek-bar-display, .jp-seek-bar {
-        background-image: url('http://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v<%= @post.audio.file.version  %>/<%= @post.audio.file.public_id   %>.png') !important;
-        background-color: white !important;
+        background-image: url('http://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v<%= @post.audio.file.version  %>/<%= @post.audio.file.public_id   %>.png') ;
+        background-color: white ;
         background-repeat:no-repeat;
       background-size:contain;
       background-position:center;
@@ -45,7 +45,7 @@
       <%= cl_image_tag @post.image.url(:square) , class: "img-thumbnail", :secure => true %>
     </p>
   
-    <div>
+    <div class="buttons">
         <% if current_user && current_user.admin? || current_user == @post.user %>
           <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
         <% end %>
@@ -59,12 +59,12 @@
           Share 
         </button>
 
-        <% if current_user && current_user.admin? %>
-          <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
-        <% end %>
-
         <% if @post.downloadable %>
           <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+        <% end %>
+
+        <% if current_user && current_user.admin? %>
+          <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
         <% end %>
 
     </div>
@@ -155,7 +155,7 @@
       </h5>
     </ul>
 
-
+    <br/>
     <div class="well">
         <h5>        
           <%= @post.description.gsub(/\n/, '<br/>').html_safe %>
@@ -191,6 +191,27 @@
       <% end %>
     </div>
     <% end %>
+
+
+    <div class="buttons2 btn-group text-center">
+        <% if current_user && current_user.admin? || current_user == @post.user %>
+          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i>'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
+        <% end %>
+
+        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i>
+        </a>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> 
+        </button>
+
+        <% if @post.downloadable %>
+          <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i>"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+        <% end %>
+
+
+    </div>
 
   </div>
 

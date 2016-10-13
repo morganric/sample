@@ -21,6 +21,36 @@
   }
 }
 
+ .buttons2
+  {
+    visibility: hidden;
+  }
+
+ @media (max-width: 600px) {
+  .tags, .buttons {
+    display: none;
+  }
+
+  .jp-seek-bar-display, .jp-seek-bar {
+    background-image: url("") !important;
+    background-color: transparent !important;
+  }
+
+  .buttons2 
+  {
+    visibility: visible;
+  }
+
+  .buttons2 .btn {
+    width: 75px;
+  }
+
+  .jp-bar {
+    width: 75% !important;
+    margin-left: 10px !important;
+  }
+}
+
  .record {
     height:300px;
     background-image:url('https://static.pexels.com/photos/96857/pexels-photo-96857.jpeg');
