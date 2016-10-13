@@ -27,7 +27,7 @@
 
  .buttons2
   {
-    visibility: hidden;
+    display: none;
   }
 
  @media (max-width: 600px) {
@@ -42,7 +42,7 @@
 
   .buttons2 
   {
-    visibility: visible;
+    display: block;
   }
 
   .buttons2 .btn {

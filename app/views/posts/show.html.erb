@@ -164,7 +164,6 @@
            <%= @post.created_at.strftime("Posted on %d %B %Y") %> 
         </h6> 
     </div>
-    <br/>
 
     <div class="buttons2 btn-group text-center">
         <% if current_user && current_user.admin? || current_user == @post.user %>
@@ -186,7 +185,7 @@
 
     </div>
 
-
+    <br/>
     <% unless @post.hide_samples %>
     <h4>Samples</h4>
     <div >
