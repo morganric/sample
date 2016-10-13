@@ -15,6 +15,10 @@
  *= require_self
  */
 
+ .navbar-collapse.collapse.in {
+  min-height: 300px !important;
+ }
+
  @media (max-width: 1200px) {
   .wave {
     display: none;
