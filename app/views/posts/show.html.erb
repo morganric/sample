@@ -64,7 +64,7 @@
         <% end %>
 
         <% if current_user && current_user.admin? %>
-          <%= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
+          <%#= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
         <% end %>
 
     </div>
@@ -144,7 +144,7 @@
         <% if current_user && current_user.admin? %>
           <li>
             <label class="label label-info white" >
-              <%= pluralize(@post.views, "view") %>
+              <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><%= pluralize(@post.views, "view") %>
             </label>
           </li>
         <% end %>
@@ -181,14 +181,17 @@
         <% if @post.downloadable %>
           <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i>"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
         <% end %>
-
+            <br/>
+    <br/>
 
     </div>
 
-    <br/>
     <% unless @post.hide_samples %>
-    <h4>Samples</h4>
-    <div >
+    <div class="panel panel-default">
+
+     <div class="panel-heading">
+    <h3 class="panel-title">Samples</h3>
+  </div>
       <% @post.samples.each_line do |line| %>
 
        <% @number = @number + 1 %>

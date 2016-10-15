@@ -1,6 +1,36 @@
 <h1>Editing Post</h1>
 
-<%= render 'form' %>
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+  <div class="form-inputs">
+    <%= f.input :description %>
+    <%= f.input :samples %>
+    <%= f.input :image %>
+    <%= f.label :tags %>
+    <%= f.text_field :tag_list, :onfocus=> @post.tags.map(&:name).join(","), :value=> @post.tags.map(&:name).join(","), :class=>"form-control", placeholder: @post.tags.map(&:name).join(",") || "e.g. beats, hip hop, instrumental" %>
+    <br/>
+    <h3>Admin</h3>
+    <div class="well">
+	    <% if current_user && current_user.admin? %>
+			<%= f.input :audio %>
+		    <%= f.input :user_id %>
+		    <%= f.input :hidden %>
+		    <%= f.input :disabled %>
+		    <%= f.input :featured %>
+		    <%= f.input :hide_samples %>
+		    <%= f.input :downloadable %>
+	    <% end %>
+    </div>
+
+    <% if current_user && current_user.vip? %>
+    <%= f.input :hide_samples %>
+    <%#= f.input :downloadable %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+

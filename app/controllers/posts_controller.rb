@@ -16,6 +16,11 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+
+    if @post.disabled
+      redirect_to :root, notice: 'Sorry, this post has been disabled.'
+    end
+
     @number = 0
     @post.views = @post.views.to_i + 1
     @post.save
