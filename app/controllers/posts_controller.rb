@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :embed, :play, :download]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :embed, :play, :download, :player]
   before_filter :authenticate_user!,  except: [:embed, :index, :show, :tag, :featured, :track, :buy, :short, :artist, :provider, :search, :embed, :latest, :play]
 
   after_filter :allow_iframe
@@ -27,6 +27,12 @@ class PostsController < ApplicationController
   end
 
    def embed
+    @number = 0
+    render layout: "embed"
+  end
+
+
+  def player
     @number = 0
     render layout: "embed"
   end

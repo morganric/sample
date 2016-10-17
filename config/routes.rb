@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
 
   get "/posts/:id/embed" => "posts#embed", as: :embed
+  get "/posts/:id/player" => "posts#player", as: :player
   get 'artist/:artist', to: 'posts#artist', as: :artist
   get 'track/:track', to: 'posts#track', as: :track
   get '/buy', to: 'posts#buy', as: :buy

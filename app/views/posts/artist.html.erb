@@ -1,21 +1,19 @@
-<h1>Artist: <%= @artist %></h1>
-<hr/>
+<h1 class="text-center">Artist: <%= @artist %></h1>
+<br/>
 
 <div class="col-md-12 row">
 <div class="col-md-8">
 
   <div>
-
-  <br/>
-  <!-- Tab panes -->
-  <div class="tab-content">
-    	<% @posts.each do |post| %>
-  			<%= render 'shared/posts', post: post %>
-  		<% end %>
-</div>
+	    	<% @posts.each do |post| %>
+	  			<%= render 'shared/posts', post: post %>
+	  		<% end %>
+	</div>
 
 </div>
 <div class="col-md-4">
+
+<%= render 'shared/sidebar' %>
   
 </div>
 
