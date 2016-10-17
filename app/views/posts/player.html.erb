@@ -15,6 +15,16 @@
       background-position:center;
     }
 
+
+     @media (min-width: 700px) {
+      .jp-seek-bar-display, .jp-seek-bar {
+        background-image: url('') !important;
+        background-color: black !important;
+
+    
+    }
+    }
+
   
 
     .playing {
@@ -52,13 +62,13 @@
 <div class="row" style="margin:10px;">
 
   <div class="pull-left img-thumbnail-embed  ">
-    <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail img-responsive"), @post, target: "_blank"   %>
+    <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail img-responsive"), user_post_url(id: @post, username: @post.user.name), target: "_blank"   %>
   </div>
   
   <div class="clearfix ">
 
     <h3>
-      <%= link_to truncate(@post.title, length: 20), @post , target: "_blank" %>
+      <%= link_to truncate(@post.title, length: 20), user_post_url(id: @post, username: @post.user.name) , target: "_blank" %>
       <br/>
          <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
       </small>
