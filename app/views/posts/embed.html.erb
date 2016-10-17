@@ -32,6 +32,7 @@
  
     .jp-bar {
       margin-left:3px;
+      min-width: 200px;
     }
 
     .logo {
@@ -42,14 +43,18 @@
       text-decoration: none;
     }
 
-</style>
-<div class="row" style="margin:10px; width: 540px;">
+    #jp_container_audio_1 {
+      margin-top: 10px;
+    }
 
-  <div class="pull-left img-thumbnail-embed">
-    <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail"), @post, target: "_blank"   %>
+</style>
+<div class="row" style="margin:10px;">
+
+  <div class="pull-left img-thumbnail-embed  ">
+    <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail img-responsive"), @post, target: "_blank"   %>
   </div>
   
-  <div class="clearfix pull-left">
+  <div class="">
 
     <h3>
       <%= link_to truncate(@post.title, length: 20), @post , target: "_blank" %>
@@ -60,7 +65,7 @@
 
     <div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
 
-        <div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
+        <div id="jp_container_audio_1" class="jp-flat-audio pull-left" role="application" aria-label="media player">
           <div class="jp-play-control jp-control">
             <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0">
               <i class="glyphicon glyphicon-play" style="color: white; font-size: 40px; top: 7px; left: 2px;"></i>
@@ -101,27 +106,31 @@
           <%= link_to 'MixSample', root_path, target: '_blank', class: "black pull-right logo", style: "margin-top:7px;" %>
                 <%= link_to image_tag(asset_path('mixsample-black.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
         </h5>
-
+        <br/>
+      <br/>
        
       </div><!-- footer -->
-      <br/>
-      <br/>
 
-      <% unless @post.hide_samples %>
-      <h4>Samples</h4>
-    <div id="samples">
-      
+    <% unless @post.hide_samples %>
+    <div class="panel panel-default">
+
+     <div class="panel-heading">
+    <h3 class="panel-title">Samples</h3>
+  </div>
+
+    <div class="list-group">
       <% @post.samples.each_line do |line| %>
 
        <% @number = @number + 1 %>
 
         <div class="list-group-item track" id="track<%= @number + 1 %>">
-
+   
+    
             <% line.split(/[–,-]/).each_with_index do |value, index| %>
 
 
                <% if index === 1 %>
-                   - <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
+                   by <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
                <% elsif index === 0 %>
                     <%= link_to truncate(value, length: 80), track_path(track: value.parameterize), :target => "_blank", :class => "" %>
                <% end %>
@@ -129,9 +138,12 @@
               <% end %>
                   <a href="<%= buy_url(track: line) %>" class="btn buy btn-xs btn-default pull-right" target="_blank" style="display:none;"> <i class="fa fa-apple" aria-hidden="true"></i> Buy on iTunes</a>
        
-       </div>
-    <% end %>
+           </div>
+    
+      <% end %>
     </div>
+    </div>
+
 
     <% end %>
 
