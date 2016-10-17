@@ -32,7 +32,7 @@
  
     .jp-bar {
       margin-left:3px;
-      min-width: 200px;
+      min-width: 295px;
     }
 
     .logo {
@@ -43,18 +43,14 @@
       text-decoration: none;
     }
 
-    #jp_container_audio_1 {
-      margin-top: 10px;
-    }
-
 </style>
-<div class="row" style="margin:10px;">
+<div class="row" style="margin:10px; min-width:500px;">
 
   <div class="pull-left img-thumbnail-embed  ">
     <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail img-responsive"), @post, target: "_blank"   %>
   </div>
   
-  <div class="">
+  <div class="clearfix pull-left">
 
     <h3>
       <%= link_to truncate(@post.title, length: 20), @post , target: "_blank" %>
@@ -65,7 +61,7 @@
 
     <div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
 
-        <div id="jp_container_audio_1" class="jp-flat-audio pull-left" role="application" aria-label="media player">
+        <div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
           <div class="jp-play-control jp-control">
             <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0">
               <i class="glyphicon glyphicon-play" style="color: white; font-size: 40px; top: 7px; left: 2px;"></i>
@@ -96,7 +92,7 @@
         </div>
         </div>
 
-      <div class="footer" style="margin-top:185px;">
+      <div class="footer" style="margin-top:165px;">
 
        <!-- <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
             <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
@@ -106,11 +102,11 @@
           <%= link_to 'MixSample', root_path, target: '_blank', class: "black pull-right logo", style: "margin-top:7px;" %>
                 <%= link_to image_tag(asset_path('mixsample-black.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
         </h5>
-        <br/>
-      <br/>
+
        
       </div><!-- footer -->
-
+      <br/>
+      <br/>
     <% unless @post.hide_samples %>
     <div class="panel panel-default">
 
