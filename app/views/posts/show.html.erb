@@ -244,12 +244,12 @@
         <h4 class="modal-title" id="myModalLabel">Embed: <%= @post.title %></h4>
       </div>
       <div class="modal-body">
-        <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="220"></iframe>
+        <iframe src="<%= embed_url(:id => @post) %>" frameborder="0" width="560" height="200"></iframe>
         <br>
         <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
 
 
-        <textarea cols="65"  id='fe_text' rows="3" style="margin:15px;"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="240"></iframe><br/></textarea>
+        <textarea cols="65"  id='fe_text' rows="3" style="margin:15px;"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="200"></iframe><br/></textarea>
         <br/>
         
 
