@@ -3,11 +3,20 @@
 
   <div class="form-inputs">
     <%= f.input :display_name %>
-    <%= f.input :bio %>
+    <%= f.label :bio %>
+    <%= f.text_area :bio, :rows => 10, style: 'width:100%;' %>
+    <br/>
+    <br/>
     <%= f.input :image %> 
-    <%= f.input :twitter %>
+    <%= f.label :twitter %> 
+    <div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  <%= f.input :twitter, label: false %>
+  <!-- <input type="text" class="form-control" placeholder="username" name="twitter"> -->
+</div>
   </div>
-
+<br/>
+<br/>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

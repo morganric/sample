@@ -144,7 +144,7 @@
         <% if current_user && current_user.admin? %>
           <li>
             <label class="label label-info white" >
-              <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><%= pluralize(@post.views, "view") %>
+              <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "view") %>
             </label>
           </li>
         <% end %>
@@ -192,6 +192,8 @@
      <div class="panel-heading">
     <h3 class="panel-title">Samples</h3>
   </div>
+
+    <div class="list-group">
       <% @post.samples.each_line do |line| %>
 
        <% @number = @number + 1 %>
@@ -212,8 +214,12 @@
                   <a href="<%= buy_url(track: line) %>" class="btn buy btn-xs btn-default pull-right" target="_blank" style="display:none;"> <i class="fa fa-apple" aria-hidden="true"></i> Buy on iTunes</a>
        
            </div>
+    
       <% end %>
     </div>
+    </div>
+
+
     <% end %>
 
 

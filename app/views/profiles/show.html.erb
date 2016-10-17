@@ -10,18 +10,31 @@
 
 
 <% if current_user && current_user.admin?  || current_user == @profile.user %>
+<%= link_to "@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}", target: "_blank" %>
+<% end %>
+
+
+<br/>
+
+<br/>
+
+
+<% if current_user && current_user.admin?  || current_user == @profile.user %>
 <%= link_to 'Edit', edit_profile_path(@profile), clasS: "btn btn-default" %>
 <% end %>
+
+
 </div>
 
 <div class="col-md-8">
 <h1>
   <%= @profile.display_name %>
 </h1>
-
+<% unless @profile.bio.blank? %>
 <p class="well">
   <%= @profile.bio %>
 </p>
+<% end %>
 
 
   <br/>
