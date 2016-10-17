@@ -39,13 +39,13 @@
 <div class="col-md-12">
 
 
-  <div class="col-md-4">
+  <div class="col-md-4 text-center">
     <br/>
     <p class="text-center">
       <%= cl_image_tag @post.image.url(:square) , class: "img-thumbnail", :secure => true %>
     </p>
   
-    <div class="buttons">
+    <div class="buttons btn-group ">
         <% if current_user && current_user.admin? || current_user == @post.user %>
           <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
         <% end %>
@@ -185,7 +185,7 @@
     <br/>
 
     </div>
-
+    <br/>
     <% unless @post.hide_samples %>
     <div class="panel panel-default">
 
