@@ -25,6 +25,12 @@
   }
 }
 
+ @media (max-width: 400px) {
+  .navbar-brand-logo img {
+    margin-left: 10px !important;
+  }
+}
+
  .buttons2
   {
     display: none;
