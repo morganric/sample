@@ -17,7 +17,14 @@
 
  .navbar-collapse.collapse.in {
   min-height: 300px !important;
+
  }
+
+ .navbar-collapse.collapse.in ul#right-nav {
+ float:left !important;
+
+ }
+
 
  @media (max-width: 1200px) {
   .wave {
