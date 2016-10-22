@@ -15,6 +15,11 @@
  *= require_self
  */
 
+ .footer-nav li {
+ display: inline;
+ margin-left:10px;
+ }
+
  .navbar-collapse.collapse.in {
   min-height: 300px !important;
 

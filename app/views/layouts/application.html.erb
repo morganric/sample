@@ -19,5 +19,24 @@
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
+    </main>
+    <div class="container text-center">
+             <footer class="well">
+         
+            <ul class="footer-nav">
+              <li><%= link_to 'About', about_path %></li>
+              <li><%= link_to 'Twitter', 'http://twitter.com/mixsampleapp', target: '_blank' %></li>
+              <li><%= link_to 'Contact', 'mailto:mixsampleapp@gmail.com', target: '_blank' %></li>
+              <li><%= link_to 'Terms', terms_url, target: '_blank' %></li>
+              <li><%= link_to 'Privacy', privacy_url, target: '_blank' %></li>
+            </ul>
+
+            <p class="text-muted"><%= Time.now.year %> &copy; mixsample.com</p>
+            <p><%#= Time.zone %></p>
+
+        </footer>
+
+
+    </div>
   </body>
 </html>

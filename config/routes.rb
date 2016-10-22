@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :profiles
   get "about" => "pages#about", as: :about
+  get "terms" => "pages#terms", as: :terms
+  get "privacy" => "pages#privacy", as: :privacy
 
   resources :posts
 
