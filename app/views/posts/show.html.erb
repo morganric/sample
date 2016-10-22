@@ -60,7 +60,7 @@
         </button>
 
         <% if @post.downloadable %>
-          <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+          <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default', id:"download" %>
         <% end %>
 
         <% if current_user && current_user.admin? %>
@@ -119,16 +119,30 @@
     <div>
     <ul class="tags">
     <h5>
-      <li>
-            <h5>
+        <li>
+          <h5>
             <label class="label label-success">
         
               <i class="glyphicon glyphicon-play"></i> <%= pluralize(@post.plays.to_i, "play") %>
               
             </label>
-            </h5>
+          </h5>
         </li>
 
+        <% if current_user %>
+          <% if current_user.admin? %>
+            <li>
+              <label class="label label-info white" >
+                <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "view") %>
+              </label>
+            </li>
+          <% end %>
+          <li>
+            <label class="label label-primary white" >
+              <i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i> <%= pluralize(@post.downloads, "download") %>
+            </label>
+          </li>
+        <% end %>
 
         <% @post.tags.limit(5).each do |tag| %>
             <li>
@@ -140,16 +154,6 @@
               
             </li>
         <% end %>
-
-        <% if current_user && current_user.admin? %>
-          <li>
-            <label class="label label-info white" >
-              <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "view") %>
-            </label>
-          </li>
-        <% end %>
-
-        
   
       
       </h5>
@@ -327,6 +331,12 @@ $(".skip").on("click", function(event) {
   $("#jquery_jplayer_audio_1").jPlayer('playHead', $(this).attr("data-start") );
   $("#jquery_jplayer_audio_1").jPlayer('play');
 
+
+});
+
+$("#download").on("click", function() {
+
+  $.post("/posts/<%= @post.id %>/download");
 
 });
 

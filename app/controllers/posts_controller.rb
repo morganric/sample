@@ -70,6 +70,20 @@ class PostsController < ApplicationController
    end
   end
 
+  def download
+    @post.downloads = @post.downloads.to_i + 1
+
+    respond_to do |format|
+     if @post.save
+       format.json { render :show, status: :ok, location: @post }
+     else
+       format.html { render action: 'new' }
+       format.json { render json: @post.errors, status: :unprocessable_entity }
+     end
+   end
+  end
+
+
   def tag
     @tag = deparametrize(params[:tag]).downcase
     @posts = Post.tagged_with(@tag).where(hidden: false)

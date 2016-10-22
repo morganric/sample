@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'featured', to: 'posts#featured', as: :featured
   get 'upload', to: 'posts#new', as: :upload
   post '/posts/:id/play' => 'posts#play', as: :play
+  post '/posts/:id/download' => 'posts#download', as: :download
 
   scope ":id" do
     get '/', to: 'profiles#show', :as =>  :vanity_profile
