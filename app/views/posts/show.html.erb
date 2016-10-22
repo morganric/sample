@@ -123,7 +123,7 @@
           <h5>
             <label class="label label-success">
         
-              <i class="glyphicon glyphicon-play"></i> <%= pluralize(@post.plays.to_i, "play") %>
+              <i class="glyphicon glyphicon-play"></i> <%= pluralize(@post.plays.to_i, "Play") %>
               
             </label>
           </h5>
@@ -133,13 +133,13 @@
           <% if current_user.admin? %>
             <li>
               <label class="label label-info white" >
-                <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "view") %>
+                <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "View") %>
               </label>
             </li>
           <% end %>
           <li>
             <label class="label label-primary white" >
-              <i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i> <%= pluralize(@post.downloads, "download") %>
+              <i class="fa fa-download" aria-hidden="true"></i> <%= pluralize(@post.downloads, "Download") %>
             </label>
           </li>
         <% end %>
