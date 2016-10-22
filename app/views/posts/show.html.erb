@@ -44,8 +44,8 @@
     <p class="text-center">
       <%= cl_image_tag @post.image.url(:square) , class: "img-thumbnail", :secure => true %>
     </p>
-  
-    <div class="buttons btn-group ">
+    
+    <div class="buttons btn-group " style="margin-left: 7px;">
         <% if current_user && current_user.admin? || current_user == @post.user %>
           <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i> Edit'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
         <% end %>
@@ -169,26 +169,27 @@
         </h6> 
     </div>
 
-    <div class="buttons2 btn-group text-center">
-        <% if current_user && current_user.admin? || current_user == @post.user %>
-          <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i>'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
-        <% end %>
+      <div class="buttons2 btn-group text-center" style="margin-left: 5px;">
+          <% if current_user && current_user.admin? || current_user == @post.user %>
+            <%= link_to raw('<i class="glyphicon glyphicon-wrench" ></i>'), edit_post_path(@post.id), class: "btn  btn-default black btn-sm" %> 
+          <% end %>
 
-        <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
-            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i>
-        </a>
+          <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+              <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i>
+          </a>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> 
-        </button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> 
+          </button>
 
-        <% if @post.downloadable %>
-          <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i>"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
-        <% end %>
-            <br/>
-    <br/>
+          <% if @post.downloadable %>
+            <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i>"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+          <% end %>
 
-    </div>
+          <br/>
+          <br/>
+
+      </div>
     <br/>
     <% unless @post.hide_samples %>
     <div class="panel panel-default">
