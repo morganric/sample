@@ -45,6 +45,8 @@
   .navbar-brand-logo img {
     margin-left: 10px !important;
   }
+
+
 }
 
  .buttons2
@@ -52,10 +54,19 @@
     display: none;
   }
 
- @media (max-width: 500px) {
+   @media (max-width: 780px) {
   
-  .tags, .buttons {
-    display: none;
+  .mobile {
+    display: none !important;
+    }
+
+  }
+
+
+ @media (max-width: 540px) {
+  
+  .tags, .buttons, .mobile {
+    display: none !important;
   }
 
   .jp-seek-bar-display, .jp-seek-bar {
