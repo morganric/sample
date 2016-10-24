@@ -33,8 +33,12 @@ class PostsController < ApplicationController
 
    def embed
 
+    @post.views = @post.views.to_i + 1
+    @post.save
+
     @number = 0
     render layout: "embed"
+
   end
 
 
@@ -45,6 +49,9 @@ class PostsController < ApplicationController
 
 
   def card
+
+    @post.views = @post.views.to_i + 1
+    @post.save
 
     @autoplay = params[:autoplay] || 0
 
