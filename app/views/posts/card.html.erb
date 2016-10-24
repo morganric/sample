@@ -44,7 +44,7 @@
     }
 
 </style>
-<div class="row" style="margin:10px; min-width:440px; min-height:200px;">
+<div class="row" style="margin:10px; min-width:420px; min-height:200px;">
 
   <div class="pull-left img-thumbnail-embed  ">
     <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
@@ -105,43 +105,6 @@
 
        
       </div><!-- footer -->
-      <br/>
-      <br/>
-    <% unless @post.hide_samples %>
-    <div class="panel panel-default">
-
-     <div class="panel-heading">
-    <h3 class="panel-title"><%= cl_image_tag("https://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
-  </div>
-
-    <div class="list-group">
-      <% @post.samples.each_line do |line| %>
-
-       <% @number = @number + 1 %>
-
-        <div class="list-group-item track" id="track<%= @number + 1 %>">
-   
-    
-            <% line.split(/[–,-]/).each_with_index do |value, index| %>
-
-
-               <% if index === 1 %>
-                   by <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
-               <% elsif index === 0 %>
-                    <%= link_to truncate(value, length: 80), track_path(track: value.parameterize), :target => "_blank", :class => "" %>
-               <% end %>
-
-              <% end %>
-                  <a href="<%= buy_url(track: line) %>" class="btn buy btn-xs btn-default pull-right" target="_blank" style="display:none;"> <i class="fa fa-apple" aria-hidden="true"></i> Buy on iTunes</a>
-       
-           </div>
-    
-      <% end %>
-    </div>
-    </div>
-
-
-    <% end %>
 
 
 </div>
