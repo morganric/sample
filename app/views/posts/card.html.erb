@@ -56,15 +56,15 @@
   </div>
   
 
-    <h4 class="">
+    <h3 class="">
       <%= link_to truncate(@post.title, length: 20), "http://mixsample.com#{user_post_path(id: @post.slug, username: @post.user.profile.slug)}", target: "_blank" %>
       <br/>
       <small>by <%= link_to @post.user.profile.display_name || @post.user.name, "http://mixsample.com#{vanity_profile_path(@post.user.profile.slug)}", target: "_blank"  %>
       </small>
-    </h4>
+    </h3>
 
 
-<div class="" style="margin-left: 130px;">
+<div class="" style="margin-left: 160px;">
     <div id="jquery_jplayer_audio_1" class="jp-jplayer "></div>
 
         <div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
