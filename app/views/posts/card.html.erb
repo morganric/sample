@@ -13,6 +13,7 @@
         background-color: white !important;
         background-repeat:no-repeat;
       background-position:center;
+      width: 50%;
     }
 
   
@@ -32,7 +33,7 @@
  
     .jp-bar {
       margin-left:3px;
-      /*min-width: 200px;*/
+      min-width: 100px;
     }
 
     .logo {
@@ -43,23 +44,28 @@
       text-decoration: none;
     }
 
-</style>
-<div class="row" style="margin:10px; min-width:420px; min-height:200px;">
+    .h4 {
+    	max-width: 200px;
+    }
 
-  <div class="pull-left img-thumbnail-embed  ">
-    <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
+</style>
+<div class="row" style="margin:10px; min-height:200px;">
+
+  <div class="pull-left" style="margin-right:10px;">
+    <%= link_to image_tag(@post.image.url(:card, secure: true) , class: ""), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
   </div>
   
-  <div class="clearfix pull-left">
 
-    <h3>
+    <h4 class="">
       <%= link_to truncate(@post.title, length: 20), user_post_path(id: @post.slug, username: @post.user.profile.slug), target: "_blank" %>
       <br/>
-         <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
+      <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
       </small>
-    </h3>
+    </h4>
 
-    <div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
+
+<div class="" style="margin-left: 130px;">
+    <div id="jquery_jplayer_audio_1" class="jp-jplayer "></div>
 
         <div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
           <div class="jp-play-control jp-control">
@@ -92,7 +98,9 @@
         </div>
         </div>
 
-      <div class="footer" style="margin-top:165px;">
+
+
+      <div class="footer" style="margin-top:15px;">
 
        <!-- <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
             <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
@@ -105,9 +113,6 @@
 
        
       </div><!-- footer -->
-
-
-</div>
 
 
 

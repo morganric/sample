@@ -33,8 +33,6 @@ class PostsController < ApplicationController
 
    def embed
 
-    @autoplay = params[:autoplay]
-
     @number = 0
     render layout: "embed"
   end
@@ -47,8 +45,13 @@ class PostsController < ApplicationController
 
 
   def card
+
+    @autoplay = params[:autoplay] || 0
+
     @number = 0
     render layout: "embed"
+
+
   end
 
 
