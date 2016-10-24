@@ -44,7 +44,7 @@
     }
 
 </style>
-<div class="row" style="margin:10px; min-width:500px;">
+<div class="row" style="margin:10px; min-width:500px; min-height:200px;">
 
   <div class="pull-left img-thumbnail-embed  ">
     <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
