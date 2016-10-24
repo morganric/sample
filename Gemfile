@@ -17,6 +17,7 @@ gem 'itunes'
 gem 'itunes-search-api'
 gem 'itunes-affiliate-link' 
 gem "social-buttons", '~> 0.3'
+gem  'rails_autolink'
 group :development, :test do
   gem 'byebug'
 end
