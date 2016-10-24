@@ -1,13 +1,252 @@
-
-
 <style type="text/css">
-video {  
-   width:100%; 
-   max-width:600px; 
-   height:auto; 
-}
-</style>
+  .jp-pause:before {
+    content: : '<i class="fa fa-pause" style="top: 15px; position: absolute; left: 18px;"></i>';
+    }
 
-<audio width="100%" controls>
-  <source src="<%= @post.audio.url(secure: true) %>" type="audio/mp3">
-</audio>
+    .jp-flat-audio .jp-play:before {
+    content: : '' !important;
+    }
+
+
+   .jp-seek-bar-display, .jp-seek-bar {
+        background-image: url('https://res.cloudinary.com/narration/video/upload/h_65,w_650,fl_waveform,co_black,b_white/v<%= @post.audio.file.version  %>/<%= @post.audio.file.public_id   %>.png') !important;
+        background-color: white !important;
+        background-repeat:no-repeat;
+      background-position:center;
+    }
+
+  
+
+    .playing {
+      background-color: lightgrey;
+    }
+
+
+    .hover {
+      background-color: #eee;
+    }
+
+    .img-thumbnail-embed {
+      margin-right: 10px;
+    }
+ 
+    .jp-bar {
+      margin-left:3px;
+      /*min-width: 200px;*/
+    }
+
+    .logo {
+      font-weight: bold;
+    }
+
+    .logo:hover{
+      text-decoration: none;
+    }
+
+</style>
+<div class="row" style="margin:10px; min-width:440px; min-height:200px;">
+
+  <div class="pull-left img-thumbnail-embed  ">
+    <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
+  </div>
+  
+  <div class="clearfix pull-left">
+
+    <h3>
+      <%= link_to truncate(@post.title, length: 20), user_post_path(id: @post.slug, username: @post.user.profile.slug), target: "_blank" %>
+      <br/>
+         <small>by <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_path(@post.user.profile.slug) %>
+      </small>
+    </h3>
+
+    <div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
+
+        <div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
+          <div class="jp-play-control jp-control">
+            <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0">
+              <i class="glyphicon glyphicon-play" style="color: white; font-size: 40px; top: 7px; left: 2px;"></i>
+            </button>
+            <button class="jp-pause jp-button" role="button" aria-label="pause" tabindex="0">
+              
+            <i class="glyphicon glyphicon-pause" style="color: white; font-size: 40px; top: 7px; left: 1px;"></i></button>
+          </div>
+          <div class="jp-bar">
+            <div class="jp-seek-bar jp-seek-bar-display"></div>
+            <div class="jp-seek-bar">
+              <div class="jp-play-bar"></div>
+              <div class="jp-details"><span class="jp-title" aria-label="title"></span></div>
+
+              <div class="jp-timing">
+                  <span class="jp-current-time " role="timer" aria-label="time" style="font-size: 16px; float:left; line-height:64px;">&nbsp;</span>
+                  <span class="jp-duration" role="timer" aria-label="duration"></span>
+
+              </div>
+
+
+            </div>
+          </div>
+          <div class="jp-no-solution">
+            Media Player Error<br />
+            Update your browser or Flash plugin
+          </div>
+        </div>
+        </div>
+
+      <div class="footer" style="margin-top:165px;">
+
+       <!-- <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
+        </a>   -->
+
+        <h5>
+          <%= link_to 'MixSample', root_path, target: '_blank', class: "black pull-right logo", style: "margin-top:7px;" %>
+                <%= link_to image_tag(asset_path('mixsample-black.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
+        </h5>
+
+       
+      </div><!-- footer -->
+      <br/>
+      <br/>
+    <% unless @post.hide_samples %>
+    <div class="panel panel-default">
+
+     <div class="panel-heading">
+    <h3 class="panel-title"><%= cl_image_tag("https://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
+  </div>
+
+    <div class="list-group">
+      <% @post.samples.each_line do |line| %>
+
+       <% @number = @number + 1 %>
+
+        <div class="list-group-item track" id="track<%= @number + 1 %>">
+   
+    
+            <% line.split(/[–,-]/).each_with_index do |value, index| %>
+
+
+               <% if index === 1 %>
+                   by <%= link_to truncate(value, length: 80), artist_path(artist: value.parameterize), :target => "_blank", :class => "" %>
+               <% elsif index === 0 %>
+                    <%= link_to truncate(value, length: 80), track_path(track: value.parameterize), :target => "_blank", :class => "" %>
+               <% end %>
+
+              <% end %>
+                  <a href="<%= buy_url(track: line) %>" class="btn buy btn-xs btn-default pull-right" target="_blank" style="display:none;"> <i class="fa fa-apple" aria-hidden="true"></i> Buy on iTunes</a>
+       
+           </div>
+    
+      <% end %>
+    </div>
+    </div>
+
+
+    <% end %>
+
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+
+
+
+
+$(".skip").on("click", function(event) {
+
+  event.preventDefault();
+
+  $("#jquery_jplayer_audio_1").jPlayer('play');
+
+  console.log($(this).attr("data-start")); 
+  
+
+  // $("#jquery_jplayer_audio_1").jPlayer("setMedia", {
+  //       title: "<%= @post.title %>",
+  //       m4a: $(this).attr("audio-data")
+  //     });
+
+  $("#jquery_jplayer_audio_1").jPlayer('playHead', $(this).attr("data-start") );
+  $("#jquery_jplayer_audio_1").jPlayer('play');
+
+
+});
+
+
+
+$("#jquery_jplayer_audio_1").jPlayer({
+    ready: function(event) {
+      $(this).jPlayer("setMedia", {
+        title: "<%= @post.title %>",
+        m4a: "<%= @post.audio.url(secure: true) %>"
+
+      });
+
+      if (<%= @autoplay %> == 1) {
+
+          
+          $("#jquery_jplayer_audio_1").jPlayer('play');
+
+          //do something special
+          $.post("/posts/<%= @post.id %>/play");
+      }
+
+     
+      
+    },
+    play: function() { // Avoid multiple jPlayers playing together.
+      $(this).jPlayer("pauseOthers");
+ 
+    },
+    timeFormat: {
+      padMin: false
+    },
+    swfPath: "js",
+    supplied: "m4a,oga",
+    cssSelectorAncestor: "#jp_container_audio_1",
+    useStateClassSkin: true,
+    autoBlur: false,
+    smoothPlayBar: true,
+    remainingDuration: true,
+    keyEnabled: true,
+    keyBindings: {
+      // Disable some of the default key controls
+      loop: null,
+      muted: null,
+      volumeUp: null,
+      volumeDown: null
+    },
+    wmode: "window",
+    ended: function() { // Avoid multiple jPlayers playing together.
+      
+    console.log('play');
+
+       //do something special
+      $.post("/posts/<%= @post.id %>/play");
+    }
+  });
+  
+  $(".track").hover(function() {
+    $(this).children('a.buy').toggle();
+    $(this).toggleClass("hover");
+
+  });
+
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+
+
+});
+
+
+
+
+</script>

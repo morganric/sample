@@ -20,10 +20,10 @@
 <meta name="twitter:card" content="player">
 <meta name="twitter:site" content="@mixsampleapp">
 <meta name="twitter:title" content="<%= @post.title %>">
-<meta name="twitter:image" content="<%= @post.image.url(:square) %>">
+<meta name="twitter:image" content="<%= @post.image.url(:square, secure: true) %>">
 <meta name="twitter:player:width" content="440">
 <meta name="twitter:player:height" content="250">
-<meta name="twitter:player" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/embed">
+<meta name="twitter:player" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/card">
 <meta name="twitter:player:stream" content="<%= @post.audio.url(secure: true) %>">
 <meta name="twitter:player:stream:content_type" content="audio/mp3">
 
