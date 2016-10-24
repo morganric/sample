@@ -47,7 +47,7 @@
 <div class="row" style="margin:10px; min-width:500px;">
 
   <div class="pull-left img-thumbnail-embed  ">
-    <%= link_to image_tag(@post.image.url(:embed) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
+    <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: "img-thumbnail img-responsive"), user_post_path(id: @post.slug, username:@post.user.profile.slug), target: "_blank"   %>
   </div>
   
   <div class="clearfix pull-left">
@@ -111,7 +111,7 @@
     <div class="panel panel-default">
 
      <div class="panel-heading">
-    <h3 class="panel-title"><%= cl_image_tag("http://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
+    <h3 class="panel-title"><%= cl_image_tag("https://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
   </div>
 
     <div class="list-group">
@@ -179,7 +179,7 @@ $("#jquery_jplayer_audio_1").jPlayer({
     ready: function(event) {
       $(this).jPlayer("setMedia", {
         title: "<%= @post.title %>",
-        m4a: "<%= @post.audio %>"
+        m4a: "<%= @post.audio.url(secure: true) %>"
 
       });
 
