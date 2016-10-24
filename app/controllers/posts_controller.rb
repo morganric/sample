@@ -32,6 +32,9 @@ class PostsController < ApplicationController
   end
 
    def embed
+
+    @autoplay = params[:autoplay]
+
     @number = 0
     render layout: "embed"
   end

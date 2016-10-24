@@ -155,6 +155,9 @@
 
 $(document).ready(function() {
 
+
+
+
 $(".skip").on("click", function(event) {
 
   event.preventDefault();
@@ -175,6 +178,8 @@ $(".skip").on("click", function(event) {
 
 });
 
+
+
 $("#jquery_jplayer_audio_1").jPlayer({
     ready: function(event) {
       $(this).jPlayer("setMedia", {
@@ -183,14 +188,21 @@ $("#jquery_jplayer_audio_1").jPlayer({
 
       });
 
+      if (<%= @autoplay %> == 1) {
+
+          
+          $("#jquery_jplayer_audio_1").jPlayer('play');
+
+          //do something special
+          $.post("/posts/<%= @post.id %>/play");
+      }
+
      
       
     },
     play: function() { // Avoid multiple jPlayers playing together.
       $(this).jPlayer("pauseOthers");
  
-
-
     },
     timeFormat: {
       padMin: false
@@ -230,7 +242,11 @@ $("#jquery_jplayer_audio_1").jPlayer({
   $('[data-toggle="tooltip"]').tooltip()
 });
 
+
+
 });
+
+
 
 
 </script>
