@@ -1,31 +1,53 @@
 <%= simple_form_for(@post) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :user_id, as: :hidden %>
-    <%= f.input :description %>
-    <%= f.input :samples %>
-    <%= f.input :image %>
-    <%= f.input :audio %>
-    <%= f.label :tags %>
-    <%= f.text_field :tag_list, :onfocus=> @post.tags.map(&:name).join(","), :value=> @post.tags.map(&:name).join(","), :class=>"form-control", placeholder: @post.tags.map(&:name).join(",") || "e.g. beats, hip hop, instrumental" %>
+  <div class="form-inputs col-md-12">
+
+  <div class=" row">
+    <div class=" col-md-6">
+        <%= f.input :title %>
+        <%= f.input :user_id, as: :hidden %>
+        <%= f.label :description %>
+        <%= f.text_area :description, rows: 5, cols: 65 %>
+        <br/><br/>
+        <%= f.input :image %>
+    </div>
+    <div class=" col-md-6">
+        <%= f.label :samples %>
+        <%= f.text_area :samples, rows: 5, cols: 65 %>
+        <br/>
+        <br/>
+        <%= f.label :tags %>
+        <%= f.text_field :tag_list, :onfocus=> @post.tags.map(&:name).join(","), :value=> @post.tags.map(&:name).join(","), :class=>"form-control", placeholder: @post.tags.map(&:name).join(",") || "e.g. beats, hip hop, instrumental" %>
+        <br/>
+        <%= f.input :audio %>
+
+        </div>
+    </div>
     <br/>
+
+    <% if current_user && current_user.vip? %>
+    <%= f.input :hide_samples %>
+    <%= f.input :downloadable %>
+    <% end %>
+    <br/>
+
     <% if current_user && current_user.admin? %>
+    <h3>Admin</h3>
+    <div class="well">
+    
     <%= f.input :hidden %>
     <%= f.input :disabled %>
     <%= f.input :featured %>
     <%= f.input :hide_samples %>
     <%= f.input :downloadable %>
+    </div>
     <% end %>
 
-    <% if current_user && current_user.vip? %>
-    <%= f.input :hide_samples %>
-    <%#= f.input :downloadable %>
-    <% end %>
+  
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-lg btn-block", value: "Upload" %>
   </div>
 <% end %>

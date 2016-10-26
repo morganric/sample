@@ -32,7 +32,7 @@
 </h1>
 <% unless @profile.bio.blank? %>
 <p class="well">
-  <%= @profile.bio %>
+  <%= auto_link(@profile.bio.gsub(/\n/, '<br/>').html_safe, :html => { :target => '_blank' }) %>
 </p>
 <% end %>
 

@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   include ApplicationHelper
   require 'itunes-search-api'
+  require 'rails_autolink'
 
   # GET /posts
   # GET /posts.json
