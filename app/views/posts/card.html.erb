@@ -53,6 +53,15 @@
 
   <div class="pull-left" style="margin-right:10px;">
     <%= link_to image_tag(@post.image.url(:embed, secure: true) , class: ""), "http://mixsample.com#{user_post_path(id: @post.slug, username:@post.user.profile.slug)}", target: "_blank"   %>
+      <br/>
+
+          <a type="button" class="btn btn-default btn-xs " data-toggle="modal" data-target="#myModal" >
+              <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
+          </a>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> Share
+          </button>
   </div>
   
 
@@ -97,7 +106,28 @@
           </div>
         </div>
         </div>
+        <br/>
 
+    <ul class="tags" style="margin-top:15px;">
+     <h5>
+      <li>  <label class="label label-success"><i class="glyphicon glyphicon-play" aria-hidden="true"></i> 
+        <%= pluralize(@post.plays, 'plays') %>
+      
+      </label>
+      </li>
+
+        <% @post.tags.limit(2).each do |tag| %>
+            <li>
+              
+                <label class="label label-default white" >
+                  <i class="glyphicon glyphicon-tag" aria-hidden="true"></i>
+                  <%= link_to tag, tag_path(tag: tag.name.parameterize), class: "white" %>
+                </label>&nbsp;
+              
+            </li>
+        <% end %>
+        </h5>
+      </ul>
 
 
       <div class="footer" style="margin-top:15px;">
