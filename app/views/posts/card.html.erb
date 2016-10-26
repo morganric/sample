@@ -153,7 +153,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Embed Code for : <%= @post.title %></h4>
+        <h4 class="modal-title" id="myModalLabel">Embed Code: </h4>
       </div>
       <div class="modal-body">
         <textarea cols="50"  id='fe_text' rows="3" style="margin-left:5px;"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="200"></iframe><br/></textarea>
