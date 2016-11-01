@@ -16,14 +16,24 @@ class User < ActiveRecord::Base
   has_many :posts
   has_one :profile
 
-  validates_presence_of :name
   validates_uniqueness_of :name
+
+  codes = []
+
+  User.all.each do |user|
+    codes << user.name
+  end
+  
+  codes.concat ["rekkerd", "mixsample"]
+
+  validates :code, inclusion: codes
 
   def create_profile
     @profile = Profile.new(:user_id => id)
     @profile.display_name = self.name
     @profile.save
   end
+
 
 end
 

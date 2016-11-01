@@ -31,7 +31,7 @@ module DevisePermittedParameters
     # devise_parameter_sanitizer.for(:account_update) << :name
 
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-	    user_params.permit({ roles: [] }, :email, :name, :password, :password_confirmation)
+	    user_params.permit({ roles: [] }, :email, :name, :password, :password_confirmation, :code)
 	  end
 	devise_parameter_sanitizer.permit(:sign_in) do |user_params|
 	    user_params.permit({ roles: [] }, :email, :name, :password, :password_confirmation)
