@@ -37,6 +37,8 @@ class PostsController < ApplicationController
     @post.views = @post.views.to_i + 1
     @post.save
 
+    @autoplay = params[:autoplay] || 0
+
     @number = 0
     render layout: "embed"
 
