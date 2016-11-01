@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     codes << user.name
   end
   
-  codes.concat ["rekkerd", "mixsample"]
+  codes = codes.concat ["rekkerd", "mixsampleapp"]
 
   validates :code, inclusion: codes
 

@@ -9,6 +9,11 @@
      <div class="form-group">
       <%= f.label "Invite Code" %>
       <%= f.text_field :code, :autofocus => true, class: 'form-control' %>
+      <p> Ask your favourite musician, producer or music blogger on Twitter for an invite code...
+      <br/>
+      <br/>
+      <%= tweet_button(count: 'none', :url => root_url, via: "mixsampleapp", text: "Does anyone have an invite code for @mixsampleapp ..? #music #mixsample") %>
+           </p>
     </div>
 
     <div class="form-group">
