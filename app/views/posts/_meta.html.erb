@@ -36,6 +36,18 @@
 <meta property="og:description" content="<%= @post.description %>">
 <meta property="og:site_name" content="mixsample.com" />
 
+ <meta property="og:type" content="video">
+        <meta property="og:video:url" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/card">
+        <meta property="og:video:secure_url" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/card">
+        <meta property="og:video:type" content="text/html">
+        <meta property="og:video:width" content="420">
+        <meta property="og:video:height" content="240">
+        <meta property="og:video:url" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/card">
+        <meta property="og:video:secure_url" content="https://mixsample.herokuapp.com/posts/<%= @post.id %>/card">
+        <meta property="og:video:type" content="text/html">
+        <meta property="og:video:width" content="420">
+        <meta property="og:video:height" content="240">
+
 
 <link rel="alternate" type="application/json+oembed"
   href="<%#= "#{oembed_url}?url=#{post_url}" %>" />
