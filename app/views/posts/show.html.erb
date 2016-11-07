@@ -42,7 +42,7 @@
   <div class="col-md-4 text-center">
     <br/>
     <p class="text-center">
-      <%= cl_image_tag @post.image.url(:square) , class: "img-thumbnail", :secure => true %>
+      <%= cl_image_tag @post.image.url(:square) || "http://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png" , class: "img-thumbnail", :secure => true %>
     </p>
     
     <div class="buttons btn-group " style="margin-left: 7px;">
