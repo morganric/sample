@@ -2,7 +2,7 @@
 
 <div class="panel panel-body panel-default">
 
-        <%= link_to image_tag(post.image.url(:thumbnail) || "http://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", class: "pull-left", style:"margin-right:15px;"),  user_post_path(id: post.slug, username: post.user.profile.slug) %>
+        <%= link_to image_tag(post.image.url(:thumbnail) || "http://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", class: "pull-left", style:"margin-right:15px; width:150px;"),  user_post_path(id: post.slug, username: post.user.profile.slug) %>
         
         <h3>
           <%= link_to truncate(post.title, length: 100), user_post_path(id: post.slug, username: post.user.profile.slug) %><br/>
