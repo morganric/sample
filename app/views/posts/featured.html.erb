@@ -25,7 +25,7 @@
         <br/>
           <small>
           by 
-          <%= link_to @post.user.profile.display_name || @posts.first.user.name, vanity_profile_path(id: @posts.first.user.name), class: "white" %>
+          <%= link_to @posts.first.user.profile.display_name || @posts.first.user.name, vanity_profile_path(id: @posts.first.user.name), class: "white" %>
           </small>
         </h3>
       </div>
