@@ -9,7 +9,7 @@
 <br/>
 
 
-<% if current_user && current_user.admin?  || current_user == @profile.user %>
+<% unless @profile.twitter.blank? %>
 <%= link_to "@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}", target: "_blank" %>
 <% end %>
 
@@ -41,7 +41,7 @@
 
 <% @profile.user.posts.order("created_at DESC").each do |post| %>
         <%= render 'shared/posts', post: post %>
-      <% end %>
+<% end %>
 
 
 </div>
