@@ -39,7 +39,7 @@
 
   <br/>
 
-<% @profile.user.posts.each do |post| %>
+<% @profile.user.posts.order("created_at DESC").each do |post| %>
         <%= render 'shared/posts', post: post %>
       <% end %>
 
