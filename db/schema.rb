@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031005735) do
+ActiveRecord::Schema.define(version: 20161113172844) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20161031005735) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "user_favs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_favs", ["user_id", "post_id"], name: "index_user_favs_on_user_id_and_post_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

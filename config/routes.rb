@@ -31,8 +31,14 @@ Rails.application.routes.draw do
   post '/posts/:id/play' => 'posts#play', as: :play
   post '/posts/:id/download' => 'posts#download', as: :download
 
+  post 'user_favs' => 'user_favs#create', :as => 'user_favs'
+  delete 'user_favs' => 'user_favs#destroy', :as => 'delete_user_favs'
+
+
+
   scope ":id" do
     get '/', to: 'profiles#show', :as =>  :vanity_profile
+    get '/favorites', to: 'profiles#favorites', as: :user_favorites
     
   end
 

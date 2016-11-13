@@ -15,5 +15,9 @@ extend FriendlyId
 
  validates :title, :uniqueness => {:scope => :user_id}
 
+ has_many :user_favs
+has_many :favourited_by, through: :user_favs, :source => :user
+has_many :favourites, through: :user_favs, :source => :user
+
 
 end

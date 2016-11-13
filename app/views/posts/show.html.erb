@@ -67,10 +67,43 @@
           <%#= link_to raw("<i class='fa fa-trash' aria-hidden='true'></i> Destroy"), @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger white" %>
         <% end %>
 
+
+
     </div>
 
+    <br/>
+    <br/>
+
+      <% if user_signed_in? %>
+          <% if  UserFav.where(:user_id => current_user.id, :post_id => @post.id).exists? %>
+                  <%= link_to raw("<i class='glyphicon glyphicon-heart-empty'></i> Un-favorite"), delete_user_favs_path(:user_fav => {:post_id => @post.id, :user_id => current_user.id}), :remote => true, class: "btn fav  btn-default btn-block", :method => :delete %>
+              <% else %>
+                <%= link_to raw("<i class='glyphicon glyphicon-heart'></i> Favorite"), user_favs_path(:user_fav => {:post_id => @post.id,:user_id => current_user.id}), :remote => true, class: "btn fav btn-default btn-block", :method => :post %>
+          <% end %>
+      <% end %>
+
+        <br/>
+
+  <% unless @post.favourited_by.blank? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="glyphicon glyphicon-heart"></i>  Favorited By </h3>
+      </div>
+      <div class="panel-body">
+        
+          <% @post.favourited_by.limit(5).each do |user| %>
+            <span data-toggle="tooltip" data-placement="top" title="<%= user.profile.display_name %>" >
+            <%= link_to image_tag(user.profile.image.url(:thumb) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle", width: "50px"), vanity_profile_path(id: user.profile.slug)  %>
+            </span>
+          <% end %>
+
+        </div>
+      </div>
+    <% end %>
 
   </div>
+
+
   
   
 
@@ -128,6 +161,13 @@
             </label>
           </h5>
         </li>
+        <% unless @post.favourites.blank? %>
+          <li>
+            <label class="label label-primary white" >
+              <i class="fa fa-heart" ></i> <%= pluralize(@post.favourites.count, "Favorite") %>
+            </label>
+          </li>
+        <% end %>
 
         <% if current_user %>
           <% if current_user.admin? %>
@@ -138,7 +178,7 @@
             </li>
           <% end %>
           <li>
-            <label class="label label-primary white" >
+            <label class="label label-warning white" >
               <i class="fa fa-download" aria-hidden="true"></i> <%= pluralize(@post.downloads, "Download") %>
             </label>
           </li>
@@ -154,6 +194,8 @@
               
             </li>
         <% end %>
+
+    
   
       
       </h5>
@@ -314,6 +356,10 @@
 
 
 $(document).ready(function() {
+
+$(".fav").on("click", function(){
+  document.location.reload(true);
+});
 
 $(".skip").on("click", function(event) {
 
