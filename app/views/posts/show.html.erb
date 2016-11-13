@@ -92,9 +92,9 @@
       <div class="panel-body">
         
           <% @post.favourited_by.limit(5).each do |user| %>
-            <span data-toggle="tooltip" data-placement="top" title="<%= user.profile.display_name %>" >
+            <div data-toggle="tooltip" data-placement="top" title="<%= user.profile.display_name %>" >
             <%= link_to image_tag(user.profile.image.url(:thumb) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle", width: "50px"), vanity_profile_path(id: user.profile.slug)  %>
-            </span>
+            </div>
           <% end %>
 
         </div>

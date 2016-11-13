@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites]
   before_filter :authenticate_user!,  except: [:index, :show]
 
   before_action :admin_only, :only => [ :new ]
@@ -13,6 +13,12 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @posts = @profile.user.posts
+  end
+
+  def favorites
+
+    @posts = @profile.user.favourites
     
   end
 
