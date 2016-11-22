@@ -97,23 +97,18 @@
 
       <div class="" style="margin-top:165px;">
 
-       <div class="pull-left btn-group text-center" style="">
+       <div class="pull-left btn-group text-center" style=" ">
 
           <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
               <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
           </a>
 
-          <!-- Button trigger modal -->
           <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> Share
           </button>
 
-          <% if @post.downloadable %>
-            <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
-          <% end %>
-
-          <br/>
-          <br/>
-
+          <%# if @post.downloadable %>
+            <%#= link_to raw("<i class='fa fa-download' aria-hidden='true'></i> Download"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+          <%# end %>
       </div>
       <div class="pull-right" style="position: relative; top: -45px;">
           <h5 >
