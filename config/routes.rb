@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  mount Upmin::Engine => '/admin'
   resources :profiles
   get "about" => "pages#about", as: :about
   get "terms" => "pages#terms", as: :terms
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end  
 
-  mount Upmin::Engine => '/admin'
+
   devise_for :users
   resources :users
 

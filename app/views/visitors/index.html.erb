@@ -1,10 +1,16 @@
 <% content_for :title do %>Welcome<% end %>
 
-<div class="jumbotron">
+<div class="jumbotron col-md-12">
+	
+
+	<div class="col-md-5">
 	<h1>Welcome to MixSample</h1>
 	<hr/>
 	<h4>
 	Sample Music Made Simple.
+	<br/>
+	<br/>
+	MixSample hosts, streams and licenses sample based music for free.
 	<br/>
 	<br/>
 	<%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-primary white" %>
@@ -13,8 +19,20 @@
 	<br/>
 	</h4>
 
+	</div>
+	<div class="col-md-7">
+			<h4>
+	<iframe src="http://mixsample.com/posts/13/embed?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="" width="540" height="340"></iframe><br/>
+	
+	</h4>
+	</div>
+
 </div>
 	<style type="text/css">
+
+	.jumbotron {
+		background-color: white;
+	}
 
 	body {
 		background-image:url('http://res.cloudinary.com/narration/image/upload/v1473721630/RECORD_fjjtpe.jpg');
