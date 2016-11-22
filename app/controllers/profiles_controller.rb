@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites]
-  before_filter :authenticate_user!,  except: [:index, :show]
+  before_filter :authenticate_user!,  except: [:index, :show, :favorites]
 
   before_action :admin_only, :only => [ :new ]
 

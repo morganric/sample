@@ -3,7 +3,7 @@
   
 
   <div class="panel-heading">
-    <h3 class="panel-title">Upload</h3>
+    <h3 class="panel-title"><i class='glyphicon glyphicon-upload' aria-hidden='true'></i> Upload</h3>
   </div>
   <div class="panel-body"><h5 class="">
     Upload your own sample-based music here... <br/><br/>
@@ -12,12 +12,24 @@
     <i class='fa fa-check' ></i> Legally Licensed
     </h5>
     <br/>
-    <%= link_to raw("<i class='glyphicon glyphicon-cloud-upload' aria-hidden='true'></i> Upload"), upload_path, class: "btn btn-success white btn-block" %>
+    <%= link_to raw("<i class='glyphicon glyphicon-upload' aria-hidden='true'></i> Upload"), upload_path, class: "btn btn-success white btn-block" %>
 
   </div>
 </div>
 
+<div class="fb-page" data-href="https://www.facebook.com/mixsampleapp" data-tabs="timeline" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/mixsampleapp" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/mixsampleapp">MixSample</a></blockquote></div>
+    <br/>
+    <br/>
+    <a class="twitter-timeline" data-height="600" href="https://twitter.com/mixsampleapp">Tweets by mixsampleapp</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=1412697118982924";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 <!--<a class="twitter-timeline" href="https://twitter.com/mixsampleapp">Tweets by mixsampleapp</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
