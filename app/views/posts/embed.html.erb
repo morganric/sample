@@ -92,27 +92,47 @@
         </div>
         </div>
 
-      <div class="footer" style="margin-top:165px;">
 
-       <!-- <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
-            <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
-        </a>   -->
+     
 
-        <h5>
+      <div class="" style="margin-top:165px;">
+
+       <div class="pull-left btn-group text-center" style="margin-left: 5px;">
+
+          <a type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#myModal" >
+              <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i>
+          </a>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#shareModal"><i class="glyphicon glyphicon-share-alt"></i> 
+          </button>
+
+          <% if @post.downloadable %>
+            <%= link_to raw("<i class='fa fa-download' aria-hidden='true'></i>"), @post.audio.url, download: "data", class: 'btn btn-sm btn-default' %>
+          <% end %>
+
+          <br/>
+          <br/>
+
+      </div>
+      <div class="pull-right" style="position: relative; top: -45px;">
+          <h5 >
           <%= link_to 'MixSample', "http://mixsample.com", target: '_blank', class: "black pull-right logo", style: "margin-top:7px;" %>
                 <%= link_to image_tag(asset_path('mixsample-black.png'), style: "height:30px;"), root_path, target: '_blank', class: "black pull-right logo" %>
-        </h5>
+           </h5>
+      </div>
+
 
        
       </div><!-- footer -->
       <br/>
       <br/>
     <% unless @post.hide_samples %>
-    <div class="panel panel-default">
+        <div class="panel panel-default">
 
-     <div class="panel-heading">
-    <h3 class="panel-title"><%= cl_image_tag("https://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
-  </div>
+         <div class="panel-heading">
+        <h3 class="panel-title"><%= cl_image_tag("https://res.cloudinary.com/narration/image/upload/v1475925408/mixsample-black_xzwtms.png", width: "25px", :secure => true, style: "display: inline;" ) %> Samples</h3>
+        </div>
 
     <div class="list-group">
       <% @post.samples.each_line do |line| %>
@@ -250,3 +270,54 @@ $("#jquery_jplayer_audio_1").jPlayer({
 
 
 </script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Embed Code: </h4>
+      </div>
+      <div class="modal-body">
+        <textarea cols="50"  id='fe_text' rows="3" style="margin-left:5px;"><iframe src="https://mixsample.herokuapp.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="200"></iframe><br/></textarea>
+
+
+ </div> <div class="modal-footer"> <a href="#" class="btn btn-default" data-dismiss="modal">Close</a> 
+
+   
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share: <%= @post.title %> by <%= @post.user.profile.display_name || @post.user.name %></h4>
+      </div>
+      <div class="modal-body">
+         <ul class="nav social" style="padding-left:40px;">
+          <li style="postion:absolute; top:-4px;" class="facebook-no-count">
+
+          <%= like_button("1440239169528450", send: true, count: 'none') %></li>
+          <li><%= tweet_button(count: 'inline', :url => post_url( :id => @post.id), via: "mixsampleapp", text: "Listen to: #{truncate(@post.title, lenght: 80)} by #{truncate(@post.user.name, lenght: 40)}") %>
+            </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal end -->
