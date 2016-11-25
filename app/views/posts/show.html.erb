@@ -207,7 +207,7 @@
           <%= auto_link(@post.description.gsub(/\n/, '<br/>').html_safe, :html => { :target => '_blank' }) %>
         </h4>
         <h6 class="">
-           <%= @post.created_at.strftime("Posted on %d %B %Y") %> 
+           <%#= @post.created_at.strftime("Posted on %d %B %Y") %> 
         </h6> 
     </div>
 
