@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   
   codes = codes.concat ["rekkerd", "mixsampleapp", "learnproducing", "grillobeats"]
 
-  validates :code, inclusion: codes
+  # validates :code, inclusion: codes
 
   def create_profile
     @profile = Profile.new(:user_id => id)
