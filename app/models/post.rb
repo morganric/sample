@@ -19,7 +19,7 @@ extend FriendlyId
 has_many :favourited_by, through: :user_favs, :source => :user
 has_many :favourites, through: :user_favs, :source => :user
 
-paginates_per 5
+paginates_per 6
 
 
 end
