@@ -11,12 +11,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order("plays DESC")
+    @posts = Post.order("plays DESC").page params[:page]
+    @featured = Post.where(featured: true).order('created_at DESC')
+
   end
 
 
   def featured
-    @posts = Post.where(featured: true).order('created_at DESC')
+    @posts = Post.where(featured: true).order('created_at DESC').page params[:page]
   end
 
   # GET /posts/1
@@ -69,14 +71,16 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def artist
     @artist = deparametrize(params[:artist]).titleize
-    @posts = Post.where("samples like ?", "%#{@artist}%").where(hidden: false)
+    @posts = Post.where("samples like ?", "%#{@artist}%").where(hidden: false).page params[:page]
+    @featured = Post.where(featured: true).order('created_at DESC')
   end
 
    # GET /posts/1
   # GET /posts/1.json
   def track
     @track = deparametrize(params[:track]).titleize
-    @posts = Post.where("samples like ?", "%#{@track}%").where(hidden: false)
+    @posts = Post.where("samples like ?", "%#{@track}%").where(hidden: false).page params[:page]
+    @featured = Post.where(featured: true).order('created_at DESC')
   end
 
   def play
@@ -109,7 +113,7 @@ class PostsController < ApplicationController
   def tag
     @tag = deparametrize(params[:tag]).downcase
     @posts = Post.tagged_with(@tag).where(hidden: false)
-
+    @featured = Post.where(featured: true).order('created_at DESC')
   end
 
   def buy

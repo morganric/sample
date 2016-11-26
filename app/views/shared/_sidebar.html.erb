@@ -1,3 +1,18 @@
+<div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= link_to raw("<i class='glyphicon glyphicon-star' aria-hidden='true'></i>  Featured"), featured_path, class: "" %> </h3>
+        </div>
+        <div class="panel-body">
+
+      <ul class="nav" style="padding-left:40px;">
+        <% @featured[0..2].each do |post| %>
+          <%= link_to image_tag(post.image.url(:featured), class: "img-responsive"),  user_post_path(id: post.slug, username: post.user.profile.slug)
+           %>
+        <% end %>
+        </ul>
+
+      </div>
+    </div>
 
 <div class="panel panel-success">
   

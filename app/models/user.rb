@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  paginates_per 10
+
   after_create :create_profile
 
   # Include default devise modules. Others available are:

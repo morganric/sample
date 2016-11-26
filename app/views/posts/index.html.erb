@@ -26,9 +26,8 @@ MixSample <sup><small>&beta;eta</small></sup>
         <%= render 'shared/posts', post: post %>
       <% end %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="reviews">
-      
-    </div>
+
+    <%= paginate @posts %>
   </div>
 
 </div>

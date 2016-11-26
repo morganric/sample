@@ -46,7 +46,7 @@
 <% @posts.order("created_at DESC").each do |post| %>
         <%= render 'shared/posts', post: post %>
 <% end %>
-
+    <%= paginate @posts %>
 
 </div>
 
