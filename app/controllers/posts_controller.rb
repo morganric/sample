@@ -16,6 +16,12 @@ class PostsController < ApplicationController
 
   end
 
+   def latest
+    @posts = Post.order("created_at DESC").page params[:page]
+    @featured = Post.where(featured: true).order('created_at DESC')
+
+  end
+
 
   def featured
     @posts = Post.where(featured: true).order('created_at DESC').page params[:page]

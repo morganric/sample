@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-
+  get "/popular" => "posts#index", as: :popular
+  get "/latest" => "posts#latest", as: :latest
   get "/posts/:id/embed" => "posts#embed", as: :embed
   get "/posts/:id/player" => "posts#player", as: :player
   get "/posts/:id/card" => "posts#card", as: :card
