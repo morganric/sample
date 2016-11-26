@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113172844) do
+ActiveRecord::Schema.define(version: 20161126214826) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20161113172844) do
     t.boolean  "hide_samples"
     t.boolean  "downloadable"
     t.integer  "downloads"
+    t.integer  "embed_views"
+    t.integer  "card_views"
   end
 
   create_table "profiles", force: :cascade do |t|

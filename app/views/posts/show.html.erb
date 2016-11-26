@@ -176,6 +176,11 @@
                 <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <%= pluralize(@post.views, "View") %>
               </label>
             </li>
+            <li>
+              <label class="label label-info white" >
+                <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> <%= pluralize(@post.embed_views, "Embed View") %>
+              </label>
+            </li>
           <% end %>
           <li>
             <label class="label label-warning white" >

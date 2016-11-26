@@ -13,11 +13,15 @@ class UsersController < ApplicationController
     @plays = 0
     @uploads = Post.all.count
     @accounts = User.all
+    @embed_views = 0
+    @card_views = 0
   
     Post.all.each do |post|
       @clips = @clips + post.samples.lines.count.to_i
       @plays = @plays + post.plays.to_i     
       @views = @views + post.views.to_i
+      @embed_views = @embed_views + post.embed_views.to_i
+      @card_views = @card_views + post.card_views.to_i
     end
 
 

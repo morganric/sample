@@ -42,6 +42,8 @@ class PostsController < ApplicationController
 
    def embed
 
+    @post.embed_views = @post.embed_views.to_i + 1
+
     @post.views = @post.views.to_i + 1
     @post.save
 
@@ -61,6 +63,7 @@ class PostsController < ApplicationController
 
   def card
 
+    @post.card_views = @post.card_views.to_i + 1
     @post.views = @post.views.to_i + 1
     @post.save
 
