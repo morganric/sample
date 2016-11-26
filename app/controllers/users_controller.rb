@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # after_action :verify_authorized
 
   def index
-    @users = User.all.order(:created_at).page params[:page]
+    @users = User.all.order(:created_at).reverse.page params[:page]
     # authorize User
 
 
