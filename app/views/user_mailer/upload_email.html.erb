@@ -1,0 +1,9 @@
+  <h1>Hello <%= @user.profile.display_name.capitalize || @user.name.capitalize %></h1>
+                        <p>
+                          <%= link_to @user.profile.display_name, vanity_profile_url(@post.user.profile.slug) %> has a new upload on mixsample.com;
+                        </p>
+                        <p>
+                          Listen to <%= link_to @title, @url %>.
+                        </p>
+                        <p>Thanks!</p>
+                        The MixSample Team
