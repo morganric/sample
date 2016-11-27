@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def followers
-    @followers = current_user.followers(User)
+    @followers = @profile.user.followers(User)
   end
 
 
