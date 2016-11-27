@@ -55,7 +55,7 @@
     <h3>
       <%= link_to truncate(@post.title, length: 20), "http://mixsample.com#{user_post_path(id: @post.slug, username: @post.user.profile.slug)}", target: "_blank" %>
       <br/>
-         <small>by <%= link_to @post.user.profile.display_name || @post.user.name, "http://mixsample.com#{vanity_profile_path(@post.user.profile.slug)}" %>
+         <small>by <%= link_to @post.user.profile.display_name || @post.user.name, "http://mixsample.com#{vanity_profile_path(@post.user.profile.slug)}" , target: "_blank" %>
       </small>
     </h3>
 
