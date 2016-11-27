@@ -43,7 +43,7 @@
 
       <ul class="nav" style="padding-left:40px;">
         <% @profile.user.followers(User)[0..4].each do |user| %>
-           <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
+           <%= link_to image_tag(user.profile.image.url(:thumb) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle"), vanity_profile_path(user.profile) %>
         <% end %>
         </ul>
 

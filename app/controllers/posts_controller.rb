@@ -209,7 +209,6 @@ class PostsController < ApplicationController
     end
 
     def upload_email
-      @post = Post.friendly.find(params[:id])
       @post.user.followers(User).each do |user|
         UserMailer.upload_email(user, @post).deliver
       end
