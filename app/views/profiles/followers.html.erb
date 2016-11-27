@@ -1,0 +1,85 @@
+
+<div class="col-md-12">
+
+<div class="col-md-4">
+<p>
+  <%= image_tag @profile.image.url(:square) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle", secure: true %>
+</p>
+
+<br/>
+
+      <% if user_signed_in? && current_user != @profile.user %>
+          <% if  current_user.follows?(@profile.user) %>
+                  <%= link_to raw("<i class='glyphicon glyphicon-user'></i> Un-Follow"), unfollow_path(id: @profile.id), :remote => true, class: "btn  btn-default btn-block", :method => :delete %>
+              <% else %>
+                <%= link_to raw("<i class='glyphicon glyphicon-user'></i> Follow"), follow_path(id: @profile.id), :remote => true, class: "btn  btn-default btn-block", :method => :post %>
+          <% end %>
+      <% end %>
+
+<br/>
+<% unless @profile.twitter.blank? %>
+<%= link_to "@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}", target: "_blank" %>
+<% end %>
+
+
+<br/>
+
+<br/>
+
+
+<% if current_user && current_user.admin?  || current_user == @profile.user %>
+<%= link_to 'Edit', edit_profile_path(@profile), clasS: "btn btn-default" %>
+<% end %>
+
+<br/>
+<br/>
+<% if @profile.user.followers(User).count >= 1 %>
+
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= link_to raw("<i class='glyphicon glyphicon-user' aria-hidden='true'></i>  Followers"), followers_path, class: "" %> </h3>
+        </div>
+        <div class="panel-body">
+
+      <ul class="nav" style="padding-left:40px;">
+        <% @profile.user.followers(User)[0..4].each do |user| %>
+           <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
+        <% end %>
+        </ul>
+
+      </div>
+    </div>
+
+<% end %>
+
+</div>
+
+<div class="col-md-8">
+<h1>
+  <%= @profile.display_name %>
+</h1>
+<% unless @profile.bio.blank? %>
+<p class="well">
+  <%= auto_link(@profile.bio.gsub(/\n/, '<br/>').html_safe, :html => { :target => '_blank' }) %>
+</p>
+<% end %>
+
+<ul class="nav nav-pills">
+  <li role="presentation" class=""><a href="<%= vanity_profile_path(@profile) %>"><i class="glyphicon glyphicon-upload"></i> Uploads</a></li>
+  <li role="presentation"><a href="<%= user_favorites_path %>"><i class="glyphicon glyphicon-heart"></i> Favorites</a></li>
+  <li role="presentation" class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Followers</a></li>
+</ul>
+
+  <br/>
+
+<% @followers.each do |user| %>
+        <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
+        <h3><%= link_to user.name || user.profile.display_name, vanity_profile_path(user.profile) %></h3>
+      <hr/>
+<% end %>
+
+
+
+</div>
+
+
