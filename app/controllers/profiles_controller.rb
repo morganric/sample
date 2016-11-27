@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites]
-  before_filter :authenticate_user!,  except: [:index, :show, :favorites ]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites, :follow, :unfollow ]
+  before_filter :authenticate_user!,  except: [:index, :show, :favorites]
 
   before_action :admin_only, :only => [ :new ]
 
@@ -17,9 +17,20 @@ class ProfilesController < ApplicationController
   end
 
   def favorites
-
     @posts = @profile.user.favourites.page params[:page]
-    
+  end
+
+  def followers
+    @followers = current_user.followers(User)
+  end
+
+
+  def follow
+    current_user.follow!(@profile.user)
+  end
+
+  def unfollow
+    current_user.unfollow!(@profile.user)
   end
 
   # GET /profiles/new

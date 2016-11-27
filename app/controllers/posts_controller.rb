@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :embed, :play, :download, :player, :card]
   before_filter :authenticate_user!,  except: [:embed, :index, :show, :tag, :featured, :track, :buy, :short, :artist, :provider, :search, :embed, :latest, :play, :player, :card]
+  after_action :upload_email, only: :create
 
   after_filter :allow_iframe
 
@@ -204,6 +205,13 @@ class PostsController < ApplicationController
     def admin_only
       unless current_user.admin? 
         redirect_to :root, :alert => "Access denied."
+      end
+    end
+
+    def upload_email
+      @post = Post.friendly.find(params[:id])
+      @post.user.followers(User).each do |user|
+        UserMailer.upload_email(user, @post).deliver
       end
     end
 

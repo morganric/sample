@@ -16,6 +16,15 @@ class UserMailer < ActionMailer::Base
     mail(to: @owner.email, subject: 'MixSample.com Favorite')
   end
   
+  def upload_email(user, post)
+    @user = user
+    @post = post
+    @owner = @post.user
+    @title = @post.title
+    @url  = user_post_url(:id => @post.slug, :username => @post.user.profile.slug)
+    mail(to: @user.email, subject: 'New MixSample.com Upload')
+  end
+  
 
   def admin_email(uploader, admin, post)
     @uploader = uploader

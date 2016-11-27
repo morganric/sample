@@ -19,6 +19,7 @@ gem 'itunes-affiliate-link'
 gem "social-buttons", '~> 0.3'
 gem  'rails_autolink'
 gem 'kaminari'
+gem "socialization"
 group :development, :test do
   gem 'byebug'
 end

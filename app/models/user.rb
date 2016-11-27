@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 
   paginates_per 10
 
+  acts_as_followable
+  acts_as_follower
+
   after_create :create_profile
 
   # Include default devise modules. Others available are:

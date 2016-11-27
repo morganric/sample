@@ -301,6 +301,8 @@ GEM
     slop (3.6.0)
     social-buttons (0.3.9)
       rails (>= 3.0.0)
+    socialization (1.2.0)
+      activerecord
     spring (1.7.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -391,6 +393,7 @@ DEPENDENCIES
   sendgrid
   simple_form
   social-buttons (~> 0.3)
+  socialization
   spring
   spring-commands-rspec
   sqlite3

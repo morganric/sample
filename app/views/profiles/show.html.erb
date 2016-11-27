@@ -8,7 +8,15 @@
 
 <br/>
 
+      <% if user_signed_in? && current_user != @profile.user %>
+          <% if  current_user.follows?(@profile.user) %>
+                  <%= link_to raw("<i class='glyphicon glyphicon-user'></i> Un-Follow"), unfollow_path(id: @profile.id), :remote => true, class: "btn  btn-default btn-block", :method => :delete %>
+              <% else %>
+                <%= link_to raw("<i class='glyphicon glyphicon-user'></i> Follow"), follow_path(id: @profile.id), :remote => true, class: "btn  btn-default btn-block", :method => :post %>
+          <% end %>
+      <% end %>
 
+<br/>
 <% unless @profile.twitter.blank? %>
 <%= link_to "@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}", target: "_blank" %>
 <% end %>
@@ -23,6 +31,26 @@
 <%= link_to 'Edit', edit_profile_path(@profile), clasS: "btn btn-default" %>
 <% end %>
 
+<br/>
+<br/>
+<% if @profile.user.followers(User).count >= 1 %>
+
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= link_to raw("<i class='glyphicon glyphicon-user' aria-hidden='true'></i>  Followers"), followers_path, class: "" %> </h3>
+        </div>
+        <div class="panel-body">
+
+      <ul class="nav" style="padding-left:40px;">
+        <% @profile.user.followers(User)[0..4].each do |user| %>
+           <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
+        <% end %>
+        </ul>
+
+      </div>
+    </div>
+
+<% end %>
 
 </div>
 

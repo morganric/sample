@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
+
+
   get "/popular" => "posts#index", as: :popular
   get "/latest" => "posts#latest", as: :latest
   get "/posts/:id/embed" => "posts#embed", as: :embed
@@ -38,6 +40,11 @@ Rails.application.routes.draw do
 
 
   scope ":id" do
+
+    get "/followers" => "profiles#followers", as: :followers
+    post "/follow" => "profiles#follow", as: :follow
+    delete "/unfollow" => "profiles#unfollow", as: :unfollow
+
     get '/', to: 'profiles#show', :as =>  :vanity_profile
     get '/favorites', to: 'profiles#favorites', as: :user_favorites
     
