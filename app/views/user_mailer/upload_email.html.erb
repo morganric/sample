@@ -1,9 +1,9 @@
-  <h1>Hello <%= @user.profile.display_name.capitalize || @user.name.capitalize %></h1>
+  <h1>Hello <%= @user.profile.display_name.titleize || @user.name.titleize %></h1>
                         <p>
-                          <%= link_to @user.profile.display_name, vanity_profile_url(@post.user.profile.slug) %> has a new upload on mixsample.com;
+                          <%= link_to @post.user.profile.display_name || @post.user.name, vanity_profile_url(@post.user.profile.slug) %> has a new upload on mixsample.com.
                         </p>
                         <p>
-                          Listen to <%= link_to @title, @url %>.
+                          Listen here: <%= link_to @title.titleize, @url %>.
                         </p>
-                        <p>Thanks!</p>
+                        <p>Enjoy!</p>
                         The MixSample Team
