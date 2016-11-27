@@ -73,8 +73,8 @@
   <hr/>
 
 <%  @profile.user.followers(User).each do |user| %>
-        <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle pull-left"), vanity_profile_path(user.profile) %>
-        <h3><%= link_to user.profile.display_name || user.name , vanity_profile_path(user.profile) %></h3>
+        <h3><%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle pull-left") style: "margin-right: 5px;", vanity_profile_path(user.profile) %>
+        <%= link_to user.profile.display_name || user.name , vanity_profile_path(user.profile) %></h3>
       <hr/>
 <% end %>
 
