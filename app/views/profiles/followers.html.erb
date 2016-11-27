@@ -72,7 +72,7 @@
 
   <br/>
 
-<% @followers.each do |user| %>
+<%  @profile.user.followers(User).each do |user| %>
         <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
         <h3><%= link_to user.name || user.profile.display_name, vanity_profile_path(user.profile) %></h3>
       <hr/>
