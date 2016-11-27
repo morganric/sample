@@ -70,11 +70,11 @@
   <li role="presentation" class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Followers</a></li>
 </ul>
 
-  <br/>
+  <hr/>
 
 <%  @profile.user.followers(User).each do |user| %>
-        <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
-        <h3><%= link_to user.name || user.profile.display_name, vanity_profile_path(user.profile) %></h3>
+        <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle pull-left"), vanity_profile_path(user.profile) %>
+        <h3><%= link_to user.profile.display_name || user.name , vanity_profile_path(user.profile) %></h3>
       <hr/>
 <% end %>
 
