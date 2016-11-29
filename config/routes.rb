@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   scope ":id" do
 
     get "/followers" => "profiles#followers", as: :followers
+    get "/following" => "profiles#following", as: :following
+
     post "/follow" => "profiles#follow", as: :follow
     delete "/unfollow" => "profiles#unfollow", as: :unfollow
 

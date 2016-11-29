@@ -43,28 +43,7 @@
 
       <ul class="nav" style="padding-left:40px;">
         <% @profile.user.followers(User)[0..4].each do |user| %>
-           <%= link_to image_tag(user.profile.image.url(:thumb) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle",  width: 50), vanity_profile_path(user.profile) %>
-        <% end %>
-        </ul>
-
-      </div>
-    </div>
-
-<% end %>
-
-<br/>
-<br/>
-<% if @profile.user.followees(User).count >= 1 %>
-
-<div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= link_to raw("<i class='glyphicon glyphicon-user' aria-hidden='true'></i>  Following"), following_path, class: "" %> </h3>
-        </div>
-        <div class="panel-body">
-
-      <ul class="nav" style="padding-left:40px;">
-        <% @profile.user.followees(User)[0..4].each do |user| %>
-           <%= link_to image_tag(user.profile.image.url(:thumb) || "https://res.cloudinary.com/narration/image/upload/w_400,h_400/v1473800053/user_ldtxx0.png", class: "img-circle", width: 50), vanity_profile_path(user.profile) %>
+           <%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle"), vanity_profile_path(user.profile) %>
         <% end %>
         </ul>
 
@@ -86,17 +65,19 @@
 <% end %>
 
 <ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="#"><i class="glyphicon glyphicon-upload"></i> Uploads</a></li>
+  <li role="presentation" class=""><a href="<%= vanity_profile_path(@profile) %>"><i class="glyphicon glyphicon-upload"></i> Uploads</a></li>
   <li role="presentation"><a href="<%= user_favorites_path %>"><i class="glyphicon glyphicon-heart"></i> Favorites</a></li>
+  <li role="presentation" class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Following</a></li>
 </ul>
 
-  <br/>
+<hr/>
 
-<% @posts.order("created_at DESC").each do |post| %>
-        <%= render 'shared/posts', post: post %>
+<%  @profile.user.followees(User).each do |user| %>
+        <h3 style=""><%= link_to image_tag(user.profile.image.url(:thumb), class: "img-circle pull-left", style: "margin-right: 5px; "), vanity_profile_path(user.profile) %>
+        <%= link_to user.profile.display_name || user.name, vanity_profile_path(user.profile), style: "margin-top: 10px; padding-top: 10px; display:block;" %></h3>
+      <hr/>
 <% end %>
 
-    <%= paginate @posts %>
 
 
 </div>

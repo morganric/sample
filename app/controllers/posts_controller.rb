@@ -45,7 +45,6 @@ class PostsController < ApplicationController
 
     @post.embed_views = @post.embed_views.to_i + 1
 
-    @post.views = @post.views.to_i + 1
     @post.save
 
     @autoplay = params[:autoplay] || 0
@@ -101,7 +100,7 @@ class PostsController < ApplicationController
        format.json { render :show, status: :ok, location: @post }
      else
        format.html { render action: 'new' }
-       format.json { render json: @post.errors, status: :unprocessable_entity }
+       format.json { render json: @post.errors, status: :unprocessable_e  ntity }
      end
    end
   end

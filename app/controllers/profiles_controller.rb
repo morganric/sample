@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites, :follow, :unfollow, :followers ]
-  before_filter :authenticate_user!,  except: [:index, :show, :favorites, :follow, :unfollow, :followers ]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :favorites, :follow, :unfollow, :followers, :following ]
+  before_filter :authenticate_user!,  except: [:index, :show, :favorites, :follow, :unfollow, :followers, :following ]
 
   before_action :admin_only, :only => [ :new ]
 
@@ -22,6 +22,10 @@ class ProfilesController < ApplicationController
 
   def followers
     @followers = @profile.user.followers(User)
+  end
+
+   def followers
+    @users = @profile.user.followees(User)
   end
 
 
