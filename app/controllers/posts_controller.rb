@@ -100,7 +100,7 @@ class PostsController < ApplicationController
        format.json { render :show, status: :ok, location: @post }
      else
        format.html { render action: 'new' }
-       format.json { render json: @post.errors, status: :unprocessable_e  ntity }
+       format.json { render json: @post.errors, status: :unprocessable_entity }
      end
    end
   end
