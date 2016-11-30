@@ -207,6 +207,7 @@
     </ul>
 
     <br/>
+    <% unless @post.description.blank? %>
     <div class="well">
         <h5>        
           <%= auto_link(@post.description.gsub(/\n/, '<br/>').html_safe, :html => { :target => '_blank' }) %>
@@ -215,6 +216,7 @@
            <%#= @post.created_at.strftime("Posted on %d %B %Y") %> 
         </h6> 
     </div>
+    <% end %>
 
       <div class="buttons2 btn-group text-center" style="margin-left: 5px;">
           <% if current_user && current_user.admin? || current_user == @post.user %>
