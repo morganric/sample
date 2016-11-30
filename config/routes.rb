@@ -55,8 +55,8 @@ Rails.application.routes.draw do
   get '/:username/:id', to: 'posts#show', as: :user_post
 
   authenticated :user do
-    #root to: 'posts#index'
-    root to: 'visitors#index'
+    root to: 'posts#index'
+    #root to: 'visitors#index'
   end
 
   unauthenticated do
