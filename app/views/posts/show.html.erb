@@ -302,7 +302,11 @@
         <h5 class="hidden">Copy the code snippet below to embed this playlist in your blog or website:</h5>
 
 
-        <textarea cols="65"  id='fe_text' rows="3" style="margin:15px;"><iframe src="http://mixsample.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="200"></iframe><br/></textarea>
+        <textarea cols="65"  id='fe_text' rows="3" style="margin:15px;"><iframe src="http://mixsample.com<%= embed_path(:id => @post.id) %>?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="560" height="200"></iframe><br/>
+        <a href="<%= user_post_url(username: @post.user.profile.slug, id: @post.slug) %>" target="_blank"><%= @post.title.titleize %></a>
+        by <a href="<%= vanity_profile_url(@post.user.profile.slug) %>" target="_blank"><%= @post.user.name.titleize || @post.user.profile.display_name %></a> on <a href="<%= root_url %>" target="_blank">MixSample.com</a>
+
+        </textarea>
         <br/>
         
 
