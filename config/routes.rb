@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post 'user_favs' => 'user_favs#create', :as => 'user_favs'
   delete 'user_favs' => 'user_favs#destroy', :as => 'delete_user_favs'
 
-
+  post '/posts/:id' => 'posts#embed', :as => 'fb_embed'
 
   scope ":id" do
 
