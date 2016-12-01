@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
-def about
 
+def about
+	@post = Post.all.where(:featured => true ).order("created_at DESC").first
 end
 
 def welcome

@@ -11,10 +11,10 @@
 	Audio we host, may contain 30 second clips of sampled music which can be freely streamed, embedded and shared online. MixSample is licensed by the PRS and PPL for the music used. 
 	<br/>
 		<br/>
-	Here's an example beat by E-Prime:
+	Here's an example beat by <%= @post.user.profile.display_name || @post.user.name %>:
 	<br/>
 	<br/>
-	<iframe src="http://mixsample.com/posts/13/embed?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="660" height="350"></iframe>
+	<iframe src="http://mixsample.com/posts/<%= @post.id %>/embed?utm_source=embed&utm_medium=iframe&utm_campaign=embed%20code" frameborder="0" width="660" height="350"></iframe>
 	<br/>
 	If you're into sample based music and you'd like to get involved, tweet us <%= link_to "@mixsampleapp", "http://twitter.com/mixsampleapp", target: "_blank" %> or email us via <%= link_to "mixsampleapp@gmail.com", "mailto:mixsampleapp@gmail.com" %>. 
 	<br/>

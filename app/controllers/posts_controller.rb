@@ -154,6 +154,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     @post.user_id = current_user.id
+    @post.plays = 1
 
     respond_to do |format|
       if @post.save
