@@ -13,39 +13,31 @@ MixSample <sup><small>&beta;eta</small></sup>
 </h1>
 
 
-<div class="col-md-12 row">
-<div class="col-md-8">
+<div class="col-md-12 ">
+  <div class="col-md-8">
+    <br/>
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="<%= popular_path %>"><i class="glyphicon glyphicon-arrow-up"></i> Popular</a></li>
+      <li role="presentation"><a href="<%= latest_path %>"><i class="glyphicon glyphicon-time"></i> Latest</a></li>
+      <li class="pull-right"><button class=" btn btn-success" id="play-all"><i class="glyphicon glyphicon-play"></i> Play All</button></li>
+    </ul>
+    <br/>
+        
+        <% @posts.each do |post| %>
+          <%= render 'shared/posts', post: post %>
+        <% end %>
 
-<div>
-<br/>
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="<%= popular_path %>"><i class="glyphicon glyphicon-play"></i> Popular</a></li>
-  <li role="presentation"><a href="<%= latest_path %>"><i class="glyphicon glyphicon-time"></i> Latest</a></li>
-</ul>
-  <br/>
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="previews">
-      <% @posts.each do |post| %>
-        <%= render 'shared/posts', post: post %>
-      <% end %>
-    </div>
+      <%= paginate @posts %>
 
-    <%= paginate @posts %>
   </div>
 
+  <div class="col-md-4">
+    <br/>
+
+    <%= render 'shared/sidebar' %>
+    
+  </div>
 </div>
 
 
-</div>
-<div class="col-md-4">
-
-
-<br/>
-
-<%= render 'shared/sidebar' %>
-  
-</div>
-
-</div>
 

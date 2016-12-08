@@ -16,3 +16,15 @@
 //= require bootstrap-sprockets
 //= require 'jquery.jplayer'
 //= require_tree .
+
+$(document).ready( function() {
+
+	$("#play-all").on("click", function(){
+
+		$("#footer-player").fadeIn(500);
+			myPlaylist.play();
+	});
+
+
+});
+
